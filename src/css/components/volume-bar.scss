@@ -1,0 +1,31 @@
+.video-js .vjs-volume-panel {
+  /* horizontal */
+  &.vjs-volume-panel-horizontal.vjs-hover,
+  &.vjs-volume-panel-horizontal:active,
+  &.vjs-volume-panel-horizontal.vjs-slider-active {
+    width: 8em;
+  }
+
+  .vjs-volume-bar {
+    /* horizontal */
+    &.vjs-slider-horizontal {
+      height: 0.3em;
+    }
+
+    .vjs-volume-level {
+      /* background-color: var(--player-primary-color); */
+      background-color: #fff;
+
+      &:before {
+        width: 0.9em;
+        height: 0.9em;
+        top: -0.3em;
+        right: -0.5em;
+        content: "";
+        background-color: #fff;
+        border-radius: 0.6em;
+        transform: scale(1.2);
+      }
+    }
+  }
+}

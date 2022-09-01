@@ -1,0 +1,11 @@
+.video-js.vjs-live .vjs-live-control {
+  margin-left: 1em;
+}
+
+.video-js .vjs-seek-to-live-control {
+  user-select: none;
+
+  .vjs-icon-placeholder {
+    font-size: 0.8em;
+  }
+}

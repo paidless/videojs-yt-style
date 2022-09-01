@@ -1,0 +1,34 @@
+.video-js .vjs-big-play-button {
+  top: 50%;
+  left: 50%;
+  margin-left: -1em;
+  /* margin-top: -1em; */
+  width: 2em;
+  /* height: 2em;
+  line-height: 2em; */
+  border: none;
+  /* border-radius: 50%;
+  font-size: 3.5em;
+  background-color: rgba(0, 0, 0, 0.45); */
+  color: #fff;
+  -webkit-transition: border-color 0.4s, outline 0.4s, background-color 0.4s;
+  -moz-transition: border-color 0.4s, outline 0.4s, background-color 0.4s;
+  -ms-transition: border-color 0.4s, outline 0.4s, background-color 0.4s;
+  -o-transition: border-color 0.4s, outline 0.4s, background-color 0.4s;
+  transition: border-color 0.4s, outline 0.4s, background-color 0.4s;
+
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 8em;
+  border-radius: 0%;
+  height: 1em !important;
+  line-height: 1em !important;
+  margin-top: -0.5em !important;
+  text-shadow: 0 0 11px rgb(0 0 0 / 70%);
+}
+
+.video-js:hover .vjs-big-play-button,
+.video-js .vjs-big-play-button:focus,
+.video-js .vjs-big-play-button:active {
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--player-primary-color);
+}

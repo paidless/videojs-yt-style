@@ -1,0 +1,32 @@
+/**
+ * css for videojs-yt-style
+ * With the default plugins for postcss you can
+ * - @import files, they will be inlined during build
+ * - not worry about browser prefixes, they will be handled
+ * - nest selectors. This follows the css specification that is
+ *   currently out on some browsers. See https://tabatkins.github.io/specs/css-nesting/
+ * - custom properties (aka variables) via the var(--var-name) syntax. See
+ *   https://www.w3.org/TR/css-variables-1/
+ */
+
+@import './css/variables.scss';
+@import './css/globals.scss';
+
+@import './css/components/control-bar.scss';
+@import './css/components/progress-bar.scss';
+@import './css/components/volume-bar.scss';
+@import './css/components/live.scss';
+
+@import './css/components/big-play-button.scss';
+
+@import './css/components/menu.scss';
+
+@import './css/components/time-tooltip.scss';
+
+@import './css/components/loading-spinner.scss';
+
+@import './css/components/plugins/settings-menu.scss';
+
+@import './css/components/playback-rate.scss';
+
+@import './css/components/button-tooltip.scss';

@@ -1,0 +1,12 @@
+.video-js .vjs-time-tooltip {
+  padding: var(--player-control-bar-popup-padding);
+  top: -2.7em;
+}
+
+.video-js .vjs-play-progress .vjs-time-tooltip {
+  display: none !important;
+}
+
+.video-js .vjs-mouse-display .vjs-time-tooltip {
+  background-color: var(--player-tooltip-background-color);
+}

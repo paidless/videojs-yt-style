@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>videojs-yt-style Demo</title>
+  <link href="node_modules/video.js/dist/video-js.css" rel="stylesheet">
+  <link rel="stylesheet" href="node_modules/@samueleastdev/videojs-settings-menu/dist/videojs-settings-menu.css">
+  <link href="dist/videojs-yt-style.css" rel="stylesheet">
+</head>
+
+<body>
+  <video id="videojs-yt-style-player" class="video-js vjs-default-skin" controls>
+    <!-- <source src="//vjs.zencdn.net/v/oceans.mp4" type='video/mp4'> -->
+    <!-- <source src="//vjs.zencdn.net/v/oceans.webm" type='video/webm'> -->
+    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8" type="application/x-mpegURL">
+  </video>
+
+  <hr>
+
+  <video id="videojs-yt-style-live-player" class="video-js vjs-default-skin" controls>
+    <source src="//storage.googleapis.com/shaka-live-assets/player-source.mpd" type="application/dash+xml">
+  </video>
+
+  <ul>
+    <li><a href="/test/debug.html">Run unit tests in browser.</a></li>
+    <li><a href="docs/api/">Read generated docs.</a></li>
+  </ul>
+  <script src="node_modules/video.js/dist/video.js"></script>
+  <script src="node_modules/videojs-contrib-quality-levels/dist/videojs-contrib-quality-levels.js"></script>
+  <script
+    src="node_modules/@samueleastdev/videojs-dash-hls-bitrate-switcher/dist/videojs-dash-hls-bitrate-switcher.js"></script>
+  <script src="node_modules/@samueleastdev/videojs-settings-menu/dist/videojs-settings-menu.js"></script>
+  <script src="dist/videojs-yt-style.js"></script>
+  <script>
+    const playerOptions = {
+      html5: {
+        nativeCaptions: false,
+        hls: {
+          overrideNative: true
+        },
+        nativeAudioTracks: false,
+        nativeVideoTracks: false
+      },
+      plugins: {
+        dashHlsBitrateSwitcher: {
+          support: "both",
+        },
+        settingsMenu: {
+          items: [
+            // "AudioTrackButton",
+            // "ChaptersButton",
+            // "SubsCapsButton",
+            // "PlaybackRateMenuButton",
+            "RatesButton",
+          ],
+          languages: {
+            settings: "Settings",
+            loading: "Loading",
+            back: "Back",
+            captions_off: "Captions Off",
+            default_audio: "Default Audio",
+            audio: "Audio",
+            subtitles: "Subtitles",
+            chapters: "Chapters",
+            speed: "Speed",
+            quality: "Quality",
+          },
+        },
+      },
+      liveui: true,
+      playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],
+      nativeControlsForTouch: false,
+      noUITitleAttributes: true,
+      // techOrder: ["html5"],
+      // crossOrigin: "anonymous",
+    };
+    console.debug('Player init');
+
+    (function (window, videojs) {
+      var examplePlayer = window.examplePlayer = videojs('videojs-yt-style-player', playerOptions);
+      var ytStyle = window.ytStyle = examplePlayer.ytStyle();
+    }(window, window.videojs));
+
+    (function (window, videojs) {
+      var exampleLivePlayer = window.exampleLivePlayer = videojs('videojs-yt-style-live-player', playerOptions);
+      var ytStyle = window.ytStyle = exampleLivePlayer.ytStyle();
+    }(window, window.videojs));
+  </script>
+</body>
+
+</html>

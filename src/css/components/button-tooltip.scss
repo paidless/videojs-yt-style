@@ -1,0 +1,35 @@
+.video-js .vjs-control-bar {
+  & > .vjs-control .vjs-icon-placeholder + .vjs-control-text {
+    position: absolute !important;
+    bottom: var(--player-control-bar-popup-height);
+    left: 50%;
+    transform: translateX(-50%);
+    clip: auto !important;
+    width: auto !important;
+    height: auto !important;
+    background-color: var(--player-tooltip-background-color);
+    padding: var(--player-control-bar-popup-padding) !important;
+    border-radius: .25em;
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+    line-height: 1em;
+    opacity: 0;
+  }
+
+  & > .vjs-control > .vjs-button:hover > .vjs-icon-placeholder + .vjs-control-text,
+  & > .vjs-button:hover > .vjs-icon-placeholder + .vjs-control-text {
+    opacity: 1;
+  }
+
+  & > .vjs-control:first-child .vjs-icon-placeholder + .vjs-control-text {
+    left: 0;
+    transform: none;
+  }
+
+  & > .vjs-control:last-child .vjs-icon-placeholder + .vjs-control-text {
+    left: unset;
+    right: 0;
+    transform: none;
+  }
+}

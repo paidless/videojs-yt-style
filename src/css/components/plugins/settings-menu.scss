@@ -1,0 +1,92 @@
+.video-js .vjs-settings-menu .vjs-menu {
+  width: 18em !important;
+  left: -12em !important;
+  bottom: var(--player-control-bar-popup-height);
+  user-select: none;
+
+  .vjs-menu-content {
+    cursor: default;
+    width: 100%;
+    max-height: var(--player-menu-max-height) !important;
+    left: 0;
+    transform: none;
+
+    li {
+      font-size: 1em !important;
+      padding: 0.8em 1em !important;
+    }
+
+    .vjs-sm-list-item,
+    .setting-menu-header,
+    .vjs-menu-item {
+      cursor: pointer;
+    }
+
+    .setting-menu-list-arrow {
+      border-width: 0 0.15em 0.15em 0 !important;
+      margin: 6px !important;
+    }
+
+    .vjs-menu-item .vjs-menu-item-text .vjs-icon-placeholder:before {
+      content: "" !important;
+    }
+  }
+
+}
+
+.video-js .vjs-settings-menu.vjs-hover .vjs-menu-button {
+  position: static;
+  width: 100%;
+  height: 100%;
+}
+
+.vjs-settings-menu-mobile {
+  overflow: auto !important;
+  user-select: none;
+
+  .vjs-sm-top-level-item,
+  .setting-menu-footer-default,
+  .vjs-menu-content .setting-menu-header,
+  .vjs-menu-content .vjs-menu-item {
+    cursor: pointer;
+  }
+
+  .vjs-menu-content {
+    .setting-menu-list-arrow {
+      border-width: 0 0.15em 0.15em 0 !important;
+      margin: 6px !important;
+    }
+
+    .vjs-menu-item {
+      display: flex !important;
+      align-items: center;
+      overflow: hidden;
+
+      &:before {
+        content: "";
+        display: block;
+        margin-left: 0.5em;
+        margin-right: calc(1em + 0.425em);
+      }
+
+      &.vjs-selected:before {
+        margin-left: 0.5em;
+        margin-right: 1em;
+        content: "";
+        width: 0.425em;
+        height: 0.85em;
+        display: block;
+        margin-top: -0.2em;
+        border-right: 0.15em solid;
+        border-bottom: 0.15em solid;
+        transform: rotate(45deg);
+      }
+
+      .vjs-menu-item-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+}

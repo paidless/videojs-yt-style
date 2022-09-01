@@ -1,0 +1,45 @@
+.video-js .vjs-control-bar {
+  background-color: rgba(0, 0, 0, 0) !important;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 0 var(--player-control-bar-padding-size);
+  background-image: var(--player-bottom-gradient);
+  opacity: 1;
+  height: var(--player-control-bar-height);
+
+  -webkit-transition: -webkit-transform 0.1s ease 0s;
+  -moz-transition: -moz-transform 0.1s ease 0s;
+  -ms-transition: -ms-transform 0.1s ease 0s;
+  -o-transition: -o-transform 0.1s ease 0s;
+  transition: transform 0.1s ease 0s;
+}
+
+.video-js.not-hover.vjs-has-started.vjs-paused.vjs-user-active,
+.video-js.not-hover.vjs-has-started.vjs-paused.vjs-user-inactive,
+.video-js.not-hover.vjs-has-started.vjs-playing.vjs-user-active,
+.video-js.not-hover.vjs-has-started.vjs-playing.vjs-user-inactive,
+.video-js.vjs-has-started.vjs-playing.vjs-user-inactive {
+  .vjs-control-bar {
+    visibility: visible;
+    /* opacity: 1;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateY(var(--player-control-bar-height));
+    -moz-transform: translateY(var(--player-control-bar-height));
+    -ms-transform: translateY(var(--player-control-bar-height));
+    -o-transform: translateY(var(--player-control-bar-height));
+    transform: translateY(var(--player-control-bar-height)); */
+    -webkit-transition: -webkit-transform 1s ease 0s;
+    -moz-transition: -moz-transform 1s ease 0s;
+    -ms-transition: -ms-transform 1s ease 0s;
+    -o-transition: -o-transform 1s ease 0s;
+    transition: transform 1s ease 0s;
+  }
+}
+
+.video-js.vjs-fullscreen .vjs-control-bar {
+  font-size: 18px;
+}
+
+.video-js .vjs-control-bar2 {
+  background-color: #000000;
+}
