@@ -9,7 +9,7 @@
     height: auto !important;
     background-color: var(--player-tooltip-background-color);
     padding: var(--player-control-bar-popup-padding) !important;
-    border-radius: .25em;
+    border-radius: var(--player-popup-border-radius);
     white-space: nowrap;
     user-select: none;
     pointer-events: none;

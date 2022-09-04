@@ -12,6 +12,7 @@
     max-height: var(--player-menu-max-height);
     left: 1.5em;
     transform: translateX(-50%);
+    border-radius: var(--player-popup-border-radius);
 
     /* .vjs-menu-item,
     .vjs-menu-title {
