@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css" />
+  <script src="./js/scrollbar.js"></script>
+  <!-- BLOCK VideoJS -->
+  <link href="../node_modules/video.js/dist/video-js.css" rel="stylesheet">
+  <link rel="stylesheet" href="../node_modules/@samueleastdev/videojs-settings-menu/dist/videojs-settings-menu.css">
+  <link href="../dist/videojs-yt-style.css" rel="stylesheet">
+  <!-- ENDBLOCK-->
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'VideoJS YT Style',
+      repo: 'https://github.com/paidless/videojs-yt-style',
+      loadSidebar: true,
+      auto2top: true,
+      subMaxLevel: 3,
+      maxLevel: 4,
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md'
+      },
+      search: {
+        paths: 'auto',
+        placeholder: 'Type to search',
+        noData: 'No Results',
+        depth: 3
+      },
+    }
+  </script>
+  <script src="./js/markdown.js"></script>
+  <script src="./js/darklightTheme.js"></script>
+  <script src="./js/externalScripts.js"></script>
+  <!-- Docsify v4 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//unpkg.com/prismjs/plugins/line-highlight/prism-line-highlight.min.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-markdown.min.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-json.min.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-typescript.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+  <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <!-- BLOCK VideoJS -->
+  <script src="../node_modules/video.js/dist/video.js"></script>
+  <script src="../node_modules/videojs-contrib-quality-levels/dist/videojs-contrib-quality-levels.js"></script>
+  <script src="../node_modules/@samueleastdev/videojs-dash-hls-bitrate-switcher/dist/videojs-dash-hls-bitrate-switcher.js"></script>
+  <script src="../node_modules/@samueleastdev/videojs-settings-menu/dist/videojs-settings-menu.js"></script>
+  <script src="../dist/videojs-yt-style.js"></script>
+  <!-- ENDBLOCK -->
+</body>
+</html>
