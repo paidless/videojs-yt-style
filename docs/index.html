@@ -27,50 +27,7 @@
   <script src="../node_modules/eruda-dom/eruda-dom.js"></script>
   <script src="../node_modules/eruda-orientation/eruda-orientation.min.js"></script>
   <script src="../node_modules/eruda-touches/eruda-touches.js"></script>
-  <script>
-    // Eruda
-    eruda.init();
-    window.addEventListener('DOMContentLoaded', function() {
-      eruda.add(erudaFps);
-      eruda.add(erudaFeatures);
-      eruda.add(erudaMemory);
-      eruda.add(erudaCode);
-      eruda.add(erudaDom);
-      eruda.add(erudaOrientation);
-      eruda.add(erudaTouches);
-      // event
-      (function (window) {
-        const toOpen = (style) => {
-          return style === 'height: 80%; display: block;' || style === 'height: 80%; opacity: 0; display: block;';
-        }
-        const toClose = (style) => {
-          return style === 'height: 80%; display: block; opacity: 0;';
-        }
-        const html = document.querySelector('html');
-        eruda._$el.find('.eruda-entry-btn').eq(0).on('click', () => {
-          const style = eruda._$el.find('.eruda-dev-tools').eq(0).attr('style');
-          if (toOpen(style)) {
-            html.classList.add('open-devtools');
-            return;
-          }
-          if (toClose(style)) {
-            html.classList.remove('open-devtools');
-            return;
-          }
-        });
-      }(window));
-    });
-  </script>
-  <style>
-    html.open-devtools,
-    html.open-devtools body {
-      overflow-y: auto;
-    }
-
-    html.open-devtools body {
-      height: 20vh;
-    }
-  </style>
+  <script src="./js/erudaExternal.js"></script>
   <!-- ENDBLOCK -->
   <style>
     html.open-devtools .github-corner {
@@ -121,5 +78,6 @@
   <script src="../node_modules/videojs-mobile-ui/dist/videojs-mobile-ui.min.js"></script>
   <script src="../dist/videojs-yt-style.js"></script>
   <!-- ENDBLOCK -->
+  <script src="./js/lib.js"></script>
 </body>
 </html>
