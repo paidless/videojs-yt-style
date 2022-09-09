@@ -79,6 +79,14 @@
   "dependencies": {
     "@samueleastdev/videojs-dash-hls-bitrate-switcher": "^1.0.7",
     "@samueleastdev/videojs-settings-menu": "^0.0.9",
+    "eruda": "^2.5.0",
+    "eruda-code": "^2.0.0",
+    "eruda-dom": "^2.0.0",
+    "eruda-features": "^2.0.0",
+    "eruda-fps": "^2.0.0",
+    "eruda-memory": "^2.0.0",
+    "eruda-orientation": "^2.0.0",
+    "eruda-touches": "^2.0.0",
     "global": "^4.4.0",
     "videojs-contrib-quality-levels": "^2.1.0",
     "videojs-mobile-ui": "^0.7.0"

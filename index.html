@@ -8,25 +8,90 @@
   <link rel="stylesheet" href="node_modules/@samueleastdev/videojs-settings-menu/dist/videojs-settings-menu.css">
   <link rel="stylesheet" href="node_modules/videojs-mobile-ui/dist/videojs-mobile-ui.css">
   <link href="dist/videojs-yt-style.css" rel="stylesheet">
+  <!-- BLOCK Eruda -->
+  <script src="node_modules/eruda/eruda.js"></script>
+  <script src="node_modules/eruda-fps/eruda-fps.min.js"></script>
+  <script src="node_modules/eruda-features/eruda-features.js"></script>
+  <script src="node_modules/eruda-memory/eruda-memory.min.js"></script>
+  <script src="node_modules/eruda-code/eruda-code.js"></script>
+  <script src="node_modules/eruda-dom/eruda-dom.js"></script>
+  <script src="node_modules/eruda-orientation/eruda-orientation.min.js"></script>
+  <script src="node_modules/eruda-touches/eruda-touches.js"></script>
+  <script>
+    // Eruda
+    eruda.init();
+    window.addEventListener('DOMContentLoaded', function() {
+      eruda.add(erudaFps);
+      eruda.add(erudaFeatures);
+      eruda.add(erudaMemory);
+      eruda.add(erudaCode);
+      eruda.add(erudaDom);
+      eruda.add(erudaOrientation);
+      eruda.add(erudaTouches);
+      // event
+      (function (window) {
+        const toOpen = (style) => {
+          return style === 'height: 80%; display: block;' || style === 'height: 80%; opacity: 0; display: block;';
+        }
+        const toClose = (style) => {
+          return style === 'height: 80%; display: block; opacity: 0;';
+        }
+        const html = document.querySelector('html');
+        eruda._$el.find('.eruda-entry-btn').eq(0).on('click', () => {
+          const style = eruda._$el.find('.eruda-dev-tools').eq(0).attr('style');
+          if (toOpen(style)) {
+            html.classList.add('open-devtools');
+            return;
+          }
+          if (toClose(style)) {
+            html.classList.remove('open-devtools');
+            return;
+          }
+        });
+      }(window));
+    });
+  </script>
+  <style>
+    html.open-devtools {
+      overflow: auto;
+    }
+
+    html.open-devtools body {
+      height: 20vh;
+      overflow: auto;
+    }
+  </style>
+  <!-- ENDBLOCK -->
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .container {
+      margin: 8px;
+    }
+  </style>
 </head>
 
 <body>
-  <video id="videojs-yt-style-player" class="video-js vjs-default-skin" controls>
-    <!-- <source src="//vjs.zencdn.net/v/oceans.mp4" type='video/mp4'> -->
-    <!-- <source src="//vjs.zencdn.net/v/oceans.webm" type='video/webm'> -->
-    <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8" type="application/x-mpegURL">
-  </video>
+  <div class="container">
+    <video id="videojs-yt-style-player" class="video-js vjs-default-skin" controls>
+      <!-- <source src="//vjs.zencdn.net/v/oceans.mp4" type='video/mp4'> -->
+      <!-- <source src="//vjs.zencdn.net/v/oceans.webm" type='video/webm'> -->
+      <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8" type="application/x-mpegURL">
+    </video>
 
-  <hr>
+    <hr>
 
-  <video id="videojs-yt-style-live-player" class="video-js vjs-default-skin" controls>
-    <source src="//storage.googleapis.com/shaka-live-assets/player-source.mpd" type="application/dash+xml">
-  </video>
+    <video id="videojs-yt-style-live-player" class="video-js vjs-default-skin" controls>
+      <source src="//storage.googleapis.com/shaka-live-assets/player-source.mpd" type="application/dash+xml">
+    </video>
 
-  <ul>
-    <li><a href="/test/debug.html">Run unit tests in browser.</a></li>
-    <li><a href="docs/api/">Read generated docs.</a></li>
-  </ul>
+    <ul>
+      <li><a href="/test/debug.html">Run unit tests in browser.</a></li>
+      <li><a href="docs/api/">Read generated docs.</a></li>
+    </ul>
+  </div>
   <script src="node_modules/video.js/dist/video.js"></script>
   <script src="node_modules/videojs-contrib-quality-levels/dist/videojs-contrib-quality-levels.js"></script>
   <script
