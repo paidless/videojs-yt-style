@@ -71,9 +71,12 @@ window.playerOptions = {
 </video>
 ```
 
+<br/>
+
 ```js run
 window.examplePlayer = videojs('videojs-yt-style-player', playerOptions);
-window.examplePlayer_ytStyle = examplePlayer.ytStyle();
+window.examplePlayer_ytStyle = examplePlayer.ytStyle(); // highlight-line
+window.examplePlayer_mobileUi = examplePlayer.mobileUi();
 ```
 
 ### Live Example
@@ -83,7 +86,10 @@ window.examplePlayer_ytStyle = examplePlayer.ytStyle();
 </video>
 ```
 
+<br/>
+
 ```js run
 window.exampleLivePlayer = videojs('videojs-yt-style-live-player', playerOptions);
-window.exampleLivePlayer_ytStyle = exampleLivePlayer.ytStyle();
+window.exampleLivePlayer_ytStyle = exampleLivePlayer.ytStyle(); // highlight-line
+window.exampleLivePlayer_mobileUi = examplePlayer.mobileUi();
 ```
