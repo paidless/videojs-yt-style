@@ -1,3 +1,24 @@
+.video-js .vjs-controls-disabled .vjs-big-play-button {
+  display: none !important;
+}
+
+.video-js {
+  &.vjs-ended .vjs-big-play-button {
+    display: block !important;
+  }
+
+  &.vjs-paused.vjs-has-started .vjs-big-play-button,
+  &.vjs-ended .vjs-big-play-button,
+  &.vjs-paused .vjs-big-play-button {
+    display: block;
+  }
+
+  &.vjs-seeking .vjs-big-play-button,
+  &.vjs-waiting .vjs-big-play-button {
+    display: none !important;
+  }
+}
+
 .video-js .vjs-big-play-button {
   top: 50%;
   left: 50%;
@@ -26,9 +47,11 @@
   text-shadow: 0 0 11px rgb(0 0 0 / 70%);
 }
 
-.video-js:hover .vjs-big-play-button,
-.video-js .vjs-big-play-button:focus,
-.video-js .vjs-big-play-button:active {
-  background-color: rgba(0, 0, 0, 0);
-  color: var(--player-primary-color);
+.video-js {
+  &:hover .vjs-big-play-button,
+  .vjs-big-play-button:focus,
+  .vjs-big-play-button:active {
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--player-primary-color);
+  }
 }

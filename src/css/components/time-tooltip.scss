@@ -7,6 +7,12 @@
   display: none !important;
 }
 
-.video-js .vjs-mouse-display .vjs-time-tooltip {
-  background-color: var(--player-tooltip-background-color);
+.video-js .vjs-mouse-display {
+  &:after {
+    padding: 0 0.4em 0.3em !important;
+  }
+
+  .vjs-time-tooltip {
+    background-color: var(--player-tooltip-background-color);
+  }
 }

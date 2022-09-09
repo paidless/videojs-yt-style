@@ -1,3 +1,7 @@
 .video-js .vjs-loading-spinner {
   border-color: var(--player-primary-color);
 }
+
+.video-js.vjs-ended .vjs-loading-spinner {
+  display: none;
+}

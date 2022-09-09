@@ -6,6 +6,7 @@
   <title>videojs-yt-style Demo</title>
   <link href="node_modules/video.js/dist/video-js.css" rel="stylesheet">
   <link rel="stylesheet" href="node_modules/@samueleastdev/videojs-settings-menu/dist/videojs-settings-menu.css">
+  <link rel="stylesheet" href="node_modules/videojs-mobile-ui/dist/videojs-mobile-ui.css">
   <link href="dist/videojs-yt-style.css" rel="stylesheet">
 </head>
 
@@ -31,6 +32,7 @@
   <script
     src="node_modules/@samueleastdev/videojs-dash-hls-bitrate-switcher/dist/videojs-dash-hls-bitrate-switcher.js"></script>
   <script src="node_modules/@samueleastdev/videojs-settings-menu/dist/videojs-settings-menu.js"></script>
+  <script src="node_modules/videojs-mobile-ui/dist/videojs-mobile-ui.min.js"></script>
   <script src="dist/videojs-yt-style.js"></script>
   <script>
     const playerOptions = {
@@ -80,12 +82,14 @@
 
     (function (window, videojs) {
       var examplePlayer = window.examplePlayer = videojs('videojs-yt-style-player', playerOptions);
-      var ytStyle = window.ytStyle = examplePlayer.ytStyle();
+      var examplePlayer_ytStyle = window.examplePlayer_ytStyle = examplePlayer.ytStyle();
+      var examplePlayer_mobileUi = window.examplePlayer_mobileUi = examplePlayer.mobileUi();
     }(window, window.videojs));
 
     (function (window, videojs) {
       var exampleLivePlayer = window.exampleLivePlayer = videojs('videojs-yt-style-live-player', playerOptions);
-      var ytStyle = window.ytStyle = exampleLivePlayer.ytStyle();
+      var exampleLivePlayer_ytStyle = window.exampleLivePlayer_ytStyle = exampleLivePlayer.ytStyle();
+      var exampleLivePlayer_mobileUi = window.exampleLivePlayer_mobileUi = examplePlayer.mobileUi();
     }(window, window.videojs));
   </script>
 </body>

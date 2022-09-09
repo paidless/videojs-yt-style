@@ -77,3 +77,27 @@
     height: var(--player-control-bar-height);
   }
 }
+
+/* .video-js {
+  .vjs-menu-button-inline.vjs-slider-active,
+  .vjs-menu-button-inline:focus,
+  .vjs-menu-button-inline:hover,
+  &.vjs-no-flex .vjs-menu-button-inline {
+    width: 10em;
+  }
+
+  .vjs-menu-button-inline {
+    &:before {
+      width: 1.5em;
+    }
+
+    .vjs-menu {
+      left: 3em;
+    }
+  }
+
+  .vjs-menu-button-inline:hover,
+  &.vjs-no-flex .vjs-menu-button-inline {
+    width: 8.35em;
+  }
+} */

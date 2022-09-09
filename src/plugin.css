@@ -25,8 +25,9 @@
 
 @import './css/components/loading-spinner.scss';
 
-@import './css/components/plugins/settings-menu.scss';
-
 @import './css/components/playback-rate.scss';
 
 @import './css/components/button-tooltip.scss';
+
+@import './css/components/plugins/settings-menu.scss';
+@import './css/components/plugins/mobile-ui.scss';

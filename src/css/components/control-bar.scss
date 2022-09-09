@@ -12,6 +12,95 @@
   -ms-transition: -ms-transform 0.1s ease 0s;
   -o-transition: -o-transform 0.1s ease 0s;
   transition: transform 0.1s ease 0s;
+
+  .vjs-spacer,
+  .vjs-time-control {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-flex: 1 1 auto;
+    -moz-box-flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    user-select: none;
+  }
+
+  .vjs-time-control {
+    -webkit-box-flex: 0 0 auto;
+    -moz-box-flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: auto;
+
+    /* &.vjs-current-time {
+      margin-left: 1em;
+    } */
+
+    &.vjs-time-divider {
+      min-width: 1em;
+      padding: 0;
+
+      div {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    &.vjs-duration {
+      padding-left: 0;
+    }
+
+    .vjs-current-time-display,
+    .vjs-duration-display {
+      width: 100%;
+    }
+
+    .vjs-current-time-display {
+      text-align: right;
+    }
+
+    .vjs-duration-display {
+      text-align: left;
+    }
+  }
+}
+
+.video-js:not(.vjs-live) .vjs-control-bar .vjs-time-control.vjs-current-time {
+  padding-right: 0;
+}
+
+.video-js.vjs-no-flex .vjs-time-control {
+  display: table-cell;
+  width: 4em;
+}
+
+/*-- Hide component --*/
+.video-js {
+  .vjs-control-bar {
+    /* .vjs-play-progress:before,
+    .vjs-progress-control .vjs-play-progress:before, */
+    /* .vjs-volume-level:before, */
+    .vjs-remaining-time,
+    .vjs-volume-level:after {
+      display: none;
+    }
+  }
+
+  &.vjs-live .vjs-control-bar .vjs-time-control {
+    /* &.vjs-current-time, */
+    &.vjs-duration,
+    &.vjs-time-divider {
+      display: none;
+    }
+  }
+
+  &.vjs-no-flex .vjs-control-bar .vjs-time-control.vjs-remaining-time {
+    display: none;
+  }
 }
 
 .video-js.not-hover.vjs-has-started.vjs-paused.vjs-user-active,

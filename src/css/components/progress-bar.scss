@@ -40,6 +40,10 @@
 
     .vjs-load-progress {
       background-color: rgba(255, 255, 255, 0.6);
+
+      div {
+        display: none !important;
+      }
     }
 
     .vjs-play-progress {
@@ -60,6 +64,10 @@
         -ms-transition: -ms-transform 0.1s ease 0s;
         -o-transition: -o-transform 0.1s ease 0s;
         transition: transform 0.1s ease 0s;
+      }
+
+      &:after {
+        padding: 0 0.4em 0.3em !important;
       }
     }
 

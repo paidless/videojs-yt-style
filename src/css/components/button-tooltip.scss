@@ -15,11 +15,13 @@
     pointer-events: none;
     line-height: 1em;
     opacity: 0;
+    display: none;
   }
 
   & > .vjs-control > .vjs-button:hover > .vjs-icon-placeholder + .vjs-control-text,
   & > .vjs-button:hover > .vjs-icon-placeholder + .vjs-control-text {
     opacity: 1;
+    display: block;
   }
 
   & > .vjs-control:first-child .vjs-icon-placeholder + .vjs-control-text {
