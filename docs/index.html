@@ -18,6 +18,60 @@
   <link rel="stylesheet" href="../node_modules/videojs-mobile-ui/dist/videojs-mobile-ui.css">
   <link href="../dist/videojs-yt-style.css" rel="stylesheet">
   <!-- ENDBLOCK-->
+  <!-- BLOCK Eruda -->
+  <script src="../node_modules/eruda/eruda.js"></script>
+  <script src="../node_modules/eruda-fps/eruda-fps.min.js"></script>
+  <script src="../node_modules/eruda-features/eruda-features.js"></script>
+  <script src="../node_modules/eruda-memory/eruda-memory.min.js"></script>
+  <script src="../node_modules/eruda-code/eruda-code.js"></script>
+  <script src="../node_modules/eruda-dom/eruda-dom.js"></script>
+  <script src="../node_modules/eruda-orientation/eruda-orientation.min.js"></script>
+  <script src="../node_modules/eruda-touches/eruda-touches.js"></script>
+  <script>
+    // Eruda
+    eruda.init();
+    window.addEventListener('DOMContentLoaded', function() {
+      eruda.add(erudaFps);
+      eruda.add(erudaFeatures);
+      eruda.add(erudaMemory);
+      eruda.add(erudaCode);
+      eruda.add(erudaDom);
+      eruda.add(erudaOrientation);
+      eruda.add(erudaTouches);
+      // event
+      (function (window) {
+        const toOpen = (style) => {
+          return style === 'height: 80%; display: block;' || style === 'height: 80%; opacity: 0; display: block;';
+        }
+        const toClose = (style) => {
+          return style === 'height: 80%; display: block; opacity: 0;';
+        }
+        const html = document.querySelector('html');
+        eruda._$el.find('.eruda-entry-btn').eq(0).on('click', () => {
+          const style = eruda._$el.find('.eruda-dev-tools').eq(0).attr('style');
+          if (toOpen(style)) {
+            html.classList.add('open-devtools');
+            return;
+          }
+          if (toClose(style)) {
+            html.classList.remove('open-devtools');
+            return;
+          }
+        });
+      }(window));
+    });
+  </script>
+  <style>
+    html.open-devtools {
+      overflow: auto;
+    }
+
+    html.open-devtools body {
+      height: 20vh;
+      overflow: auto;
+    }
+  </style>
+  <!-- ENDBLOCK -->
 </head>
 <body>
   <div id="app"></div>

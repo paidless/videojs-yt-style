@@ -1,0 +1,35 @@
+{
+  "name": "eruda-orientation",
+  "version": "2.0.0",
+  "main": "eruda-orientation.js",
+  "description": "Eruda plugin for testing orientation api",
+  "scripts": {
+    "build": "uglifyjs eruda-orientation.js -o eruda-orientation.min.js --mangle",
+    "lint": "eslint eruda-orientation.js",
+    "ci": "npm run lint && npm run build",
+    "dev": "nws -p 3000",
+    "format": "prettier *.js .eslintrc.js --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liriliri/eruda-orientation.git"
+  },
+  "keywords": [
+    "eruda",
+    "orientation",
+    "plugin"
+  ],
+  "author": "redhoodsu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/liriliri/eruda-orientation/issues"
+  },
+  "homepage": "https://github.com/liriliri/eruda-orientation#readme",
+  "devDependencies": {
+    "eruda": "^2.0.0",
+    "eslint": "^4.12.1",
+    "nws": "^1.1.1",
+    "prettier": "^1.14.2",
+    "uglify-js": "^3.2.0"
+  }
+}

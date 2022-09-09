@@ -1,0 +1,55 @@
+{
+  "name": "eruda-code",
+  "version": "2.0.0",
+  "description": "Eruda plugin for running JavaScript code",
+  "main": "eruda-code.js",
+  "scripts": {
+    "dev": "webpack-dev-server --host 0.0.0.0",
+    "build": "webpack -p",
+    "ci": "npm run lint && npm run build",
+    "lint": "eslint src/**/*.js",
+    "format": "prettier src/**/*.js src/**/*.scss *.js index.html --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liriliri/eruda-code.git"
+  },
+  "eustia": {
+    "files": "src/*.js",
+    "output": "src/util.js",
+    "format": "es"
+  },
+  "keywords": [
+    "eruda",
+    "plugin"
+  ],
+  "author": "redhoodsu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/liriliri/eruda-code/issues"
+  },
+  "homepage": "https://github.com/liriliri/eruda-code#readme",
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/runtime": "^7.7.2",
+    "autoprefixer": "^9.7.1",
+    "babel-loader": "^8.0.6",
+    "codemirror": "^5.50.2",
+    "css-loader": "^3.4.1",
+    "eruda": "^2.0.0",
+    "eslint": "^6.6.0",
+    "handlebars": "^4.5.1",
+    "handlebars-loader": "^1.7.1",
+    "node-sass": "^4.13.0",
+    "postcss": "^7.0.21",
+    "postcss-class-prefix": "^0.3.0",
+    "postcss-loader": "^3.0.0",
+    "prettier": "^1.18.2",
+    "sass-loader": "^8.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
+}

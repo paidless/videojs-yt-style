@@ -66,7 +66,7 @@ window.playerOptions = {
 
 ### Basic Example
 ```html inject
-<video id="videojs-yt-style-player" class="video-js vjs-default-skin" controls>
+<video id="videojs-yt-style-player" class="video-js vjs-default-skin vjs-fluid" controls>
   <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8" type="application/x-mpegURL">
 </video>
 ```
@@ -81,7 +81,7 @@ window.examplePlayer_mobileUi = examplePlayer.mobileUi();
 
 ### Live Example
 ```html inject
-<video id="videojs-yt-style-live-player" class="video-js vjs-default-skin" controls>
+<video id="videojs-yt-style-live-player" class="video-js vjs-default-skin vjs-fluid" controls>
   <source src="//storage.googleapis.com/shaka-live-assets/player-source.mpd" type="application/dash+xml">
 </video>
 ```
