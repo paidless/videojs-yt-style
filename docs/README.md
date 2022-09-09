@@ -91,5 +91,5 @@ window.examplePlayer_mobileUi = examplePlayer.mobileUi();
 ```js run
 window.exampleLivePlayer = videojs('videojs-yt-style-live-player', playerOptions);
 window.exampleLivePlayer_ytStyle = exampleLivePlayer.ytStyle(); // highlight-line
-window.exampleLivePlayer_mobileUi = examplePlayer.mobileUi();
+window.exampleLivePlayer_mobileUi = exampleLivePlayer.mobileUi();
 ```
