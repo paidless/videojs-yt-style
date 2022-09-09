@@ -1,5 +1,5 @@
 .video-js.vjs-mobile-ui {
-  .vjs-big-play-button {
+  &.vjs-has-started .vjs-big-play-button {
     display: none;
   }
 }
