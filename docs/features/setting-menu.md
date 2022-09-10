@@ -7,7 +7,7 @@
 ```js run
 window.playerOptions = {
   html5: {
-    nativeCaptions: false,
+    // nativeCaptions: false,
     hls: {
       overrideNative: true
     },
