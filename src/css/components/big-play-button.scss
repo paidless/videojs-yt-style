@@ -44,7 +44,7 @@
   height: 1em !important;
   line-height: 1em !important;
   margin-top: -0.5em !important;
-  text-shadow: 0 0 11px rgb(0 0 0 / 70%);
+  text-shadow: var(--player-big-button-shadow);
 }
 
 .video-js {

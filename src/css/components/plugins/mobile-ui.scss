@@ -2,4 +2,8 @@
   &.vjs-has-started .vjs-big-play-button {
     display: none;
   }
+
+  .vjs-touch-overlay {
+    filter: drop-shadow(var(--player-big-button-shadow));
+  }
 }
