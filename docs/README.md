@@ -21,7 +21,7 @@ VideoJS CSS Skin
 ```js run
 window.playerOptions = {
   html5: {
-    nativeCaptions: false,
+    // nativeCaptions: false,
     hls: {
       overrideNative: true
     },
@@ -66,7 +66,7 @@ window.playerOptions = {
 
 ### Basic Example
 ```html inject
-<video id="videojs-yt-style-player" class="video-js vjs-default-skin vjs-fluid" controls>
+<video id="videojs-yt-style-basic-player" class="video-js vjs-default-skin vjs-fluid" controls>
   <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8" type="application/x-mpegURL">
 </video>
 ```
@@ -74,9 +74,9 @@ window.playerOptions = {
 <br/>
 
 ```js run
-window.examplePlayer = videojs('videojs-yt-style-player', playerOptions);
-window.examplePlayer_ytStyle = examplePlayer.ytStyle(); // highlight-line
-window.examplePlayer_mobileUi = examplePlayer.mobileUi();
+window.basicPlayer = videojs('videojs-yt-style-basic-player', playerOptions);
+window.basicPlayer_ytStyle = basicPlayer.ytStyle(); // highlight-line
+window.basicPlayer_mobileUi = basicPlayer.mobileUi();
 ```
 
 ### Live Example
@@ -89,7 +89,7 @@ window.examplePlayer_mobileUi = examplePlayer.mobileUi();
 <br/>
 
 ```js run
-window.exampleLivePlayer = videojs('videojs-yt-style-live-player', playerOptions);
-window.exampleLivePlayer_ytStyle = exampleLivePlayer.ytStyle(); // highlight-line
-window.exampleLivePlayer_mobileUi = exampleLivePlayer.mobileUi();
+window.livePlayer = videojs('videojs-yt-style-live-player', playerOptions);
+window.livePlayer_ytStyle = livePlayer.ytStyle(); // highlight-line
+window.livePlayer_mobileUi = livePlayer.mobileUi();
 ```
