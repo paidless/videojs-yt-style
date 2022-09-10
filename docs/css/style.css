@@ -53,8 +53,8 @@ html[custom-scrollbar] ::-webkit-scrollbar-thumb {
 .search input,
 .markdown-section pre {
   /* prettier-ignore */
-  box-shadow: 
-    0 0 0 1px var(--shadowBorderColor), 
+  box-shadow:
+    0 0 0 1px var(--shadowBorderColor),
     0 0 0 rgb(16 22 26 / 0%),
     0 0 0 rgb(16 22 26 / 0%);
 }
@@ -131,19 +131,27 @@ ul.app-sub-sidebar li {
 
 .markdown-section pre {
   padding: 0;
-  overflow: auto;
+  overflow: hidden;
+  z-index: 1;
+  position: relative;
+}
+
+.markdown-section pre:before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  border-left: 2px solid var(--lineHightLight);
 }
 
 .markdown-section pre > code {
   background: transparent;
 
-  position: relative;
-  z-index: 1;
-
   min-width: 100%;
 
   padding: 1.5em;
   margin: 0;
+
+  overflow: auto;
 }
 
 .line-highlight {
@@ -151,6 +159,7 @@ ul.app-sub-sidebar li {
   left: 0;
   right: 0;
   z-index: -1;
+  width: 100% !important;
 
   background-color: var(--lineHightLight);
   border-left: 2px solid var(--highlightColor);
