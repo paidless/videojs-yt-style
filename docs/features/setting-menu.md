@@ -60,7 +60,7 @@ window.playerOptions = {
 <br/>
 
 ```js run
-window.settingMenuPlayer = videojs('videojs-yt-style-setting-menu-player', playerOptions);
+window.settingMenuPlayer = videojs(document.querySelector('#videojs-yt-style-setting-menu-player'), playerOptions);
 window.settingMenuPlayer_ytStyle = settingMenuPlayer.ytStyle(); // highlight-line
-window.settingMenuPlayer_mobileUi = settingMenuPlayer.mobileUi();
+settingMenuPlayer.mobileUi();
 ```

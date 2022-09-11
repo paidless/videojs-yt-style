@@ -1,9 +1,10 @@
 {
   "name": "videojs-yt-style",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "VideoJS CSS Skin like YT",
   "main": "dist/videojs-yt-style.cjs.js",
   "module": "dist/videojs-yt-style.es.js",
+  "repository": "https://github.com/paidless/videojs-yt-style.git",
   "browser": "dist/videojs-yt-style.js",
   "generator-videojs-plugin": {
     "version": "8.0.0"

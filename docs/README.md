@@ -12,7 +12,7 @@
 
 # videojs-yt-style
 
-VideoJS CSS Skin
+VideoJS Skin like YT.
 
 ## Demo
 
@@ -74,9 +74,9 @@ window.playerOptions = {
 <br/>
 
 ```js run
-window.basicPlayer = videojs('videojs-yt-style-basic-player', playerOptions);
+window.basicPlayer = videojs(document.querySelector('#videojs-yt-style-basic-player'), playerOptions);
 window.basicPlayer_ytStyle = basicPlayer.ytStyle(); // highlight-line
-window.basicPlayer_mobileUi = basicPlayer.mobileUi();
+basicPlayer.mobileUi();
 ```
 
 ### Live Example
@@ -89,7 +89,7 @@ window.basicPlayer_mobileUi = basicPlayer.mobileUi();
 <br/>
 
 ```js run
-window.livePlayer = videojs('videojs-yt-style-live-player', playerOptions);
+window.livePlayer = videojs(document.querySelector('#videojs-yt-style-live-player'), playerOptions);
 window.livePlayer_ytStyle = livePlayer.ytStyle(); // highlight-line
-window.livePlayer_mobileUi = livePlayer.mobileUi();
+livePlayer.mobileUi();
 ```
