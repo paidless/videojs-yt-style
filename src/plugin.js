@@ -1,6 +1,7 @@
 import videojs from 'video.js';
 import {version as VERSION} from '../package.json';
 
+import './js/features/keep-TimeTooltip-In-SeekBar';
 import './js/components/progress-bar-padding';
 
 const Plugin = videojs.getPlugin('plugin');
@@ -38,9 +39,10 @@ class YtStyle extends Plugin {
 
     this.player.on('playerresize', function(e) {
       const {width, height} = player.currentDimensions();
+
       player.el().style.setProperty('--player-width', `${width}px`);
       player.el().style.setProperty('--player-height', `${height}px`);
-    })
+    });
 
     this.player.ready(() => {
       this.player.addClass('vjs-yt-style');
