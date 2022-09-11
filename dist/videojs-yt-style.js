@@ -1,4 +1,4 @@
-/*! @name videojs-yt-style @version 0.1.0 @license UNLICENSED */
+/*! @name videojs-yt-style @version 0.1.1 @license UNLICENSED */
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('video.js')) :
 	typeof define === 'function' && define.amd ? define(['video.js'], factory) :
@@ -49,7 +49,7 @@
 	  module.exports["default"] = module.exports, module.exports.__esModule = true;
 	});
 
-	var version = "0.1.0";
+	var version = "0.1.1";
 
 	var Dom = videojs__default['default'].dom; // https://github.com/Ami-OS/video.js/blob/65750e311661e70f170e3652573caacf6f21fcce/src/js/control-bar/progress-control/time-tooltip.js#L54-L133
 

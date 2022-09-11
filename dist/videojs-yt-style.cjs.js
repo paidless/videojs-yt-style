@@ -1,4 +1,4 @@
-/*! @name videojs-yt-style @version 0.1.0 @license UNLICENSED */
+/*! @name videojs-yt-style @version 0.1.1 @license UNLICENSED */
 'use strict';
 
 var _inheritsLoose = require('@babel/runtime/helpers/inheritsLoose');
@@ -9,7 +9,7 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 var _inheritsLoose__default = /*#__PURE__*/_interopDefaultLegacy(_inheritsLoose);
 var videojs__default = /*#__PURE__*/_interopDefaultLegacy(videojs);
 
-var version = "0.1.0";
+var version = "0.1.1";
 
 var Dom = videojs__default['default'].dom; // https://github.com/Ami-OS/video.js/blob/65750e311661e70f170e3652573caacf6f21fcce/src/js/control-bar/progress-control/time-tooltip.js#L54-L133
 

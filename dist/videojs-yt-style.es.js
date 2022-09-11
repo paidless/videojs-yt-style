@@ -1,8 +1,8 @@
-/*! @name videojs-yt-style @version 0.1.0 @license UNLICENSED */
+/*! @name videojs-yt-style @version 0.1.1 @license UNLICENSED */
 import _inheritsLoose from '@babel/runtime/helpers/inheritsLoose';
 import videojs from 'video.js';
 
-var version = "0.1.0";
+var version = "0.1.1";
 
 var Dom = videojs.dom; // https://github.com/Ami-OS/video.js/blob/65750e311661e70f170e3652573caacf6f21fcce/src/js/control-bar/progress-control/time-tooltip.js#L54-L133
 
