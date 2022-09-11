@@ -1,11 +1,34 @@
 # videojs-yt-style
 
+**WARNING: High early project. The stable version of this project has not been released (Release v1.0.0) and should not be used in production.**
 
+VideoJS Skin like YT.
+
+This is a component to connect other supported VideoJS plugins and use to make the VIdeoJS like YT. We also improve some original VideoJS experience.
+
+Connect to other VideoJS Plugin (Checked means support, unchecked means it will be supported in the future):
+
+- [x] [videojs-settings-menu](https://github.com/samueleastdev/videojs-setting-menu): This is also a very early project, hope the author will continue to maintain it.
+- [x] [videojs-dash-hls-bitrate-switcher](https://github.com/samueleastdev/videojs-dash-hls-bitrate-switcher): Use with videojs-settings-menu.
+- [x] [videojs-mobile-ui](https://github.com/mister-ben/videojs-mobile-ui): Improved mobile experience.
+- [ ] [videojs-vtt-thumbnails](https://github.com/mayeaux/videojs-vtt-thumbnails): Display the thumbnails in seeking.
+
+And more (You can tip me on Issues).
 
 ## Table of Contents
 
-<!-- START doctoc -->
-<!-- END doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Installation](#installation)
+- [Usage](#usage)
+  - [`<script>` Tag](#script-tag)
+  - [Browserify/CommonJS](#browserifycommonjs)
+  - [RequireJS/AMD](#requirejsamd)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 ## Installation
 
 ```sh
