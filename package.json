@@ -9,7 +9,7 @@
     "version": "8.0.0"
   },
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "npm run build-prod",
     "deploy": "node gh-pages.js",
     "prepare": "run-script-os",
     "prepare:windows": "chalk -t \"{bgBlack prepare} {bgYellow WARN} {magenta failed} Prepare script not support on windows, please run `{inverse npm run prepare}` in wsl\"",
@@ -17,6 +17,7 @@
     "build": "npm-run-all -s clean -p build:*",
     "build-prod": "cross-env-shell NO_TEST_BUNDLE=1 'npm run build'",
     "build-test": "cross-env-shell TEST_BUNDLE_ONLY=1 'npm run build'",
+    "build-offline": "npm run build-prod && node build-offline.js && chalk -t \"{bgBlack build-offline} {bgYellow INFO} {magenta success} Build offline {green OK}\"",
     "build:css": "postcss -o dist/videojs-yt-style.css --config scripts/postcss.config.js src/plugin.css",
     "build:js": "rollup -c scripts/rollup.config.js",
     "build:lang": "vjslang --dir dist/lang",

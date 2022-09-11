@@ -4,21 +4,10 @@
 <head>
   <meta charset="utf-8">
   <title>videojs-yt-style Demo</title>
-  <link href="node_modules/video.js/dist/video-js.css" rel="stylesheet">
+  <link rel="stylesheet" href="node_modules/video.js/dist/video-js.css">
   <link rel="stylesheet" href="node_modules/@samueleastdev/videojs-settings-menu/dist/videojs-settings-menu.css">
   <link rel="stylesheet" href="node_modules/videojs-mobile-ui/dist/videojs-mobile-ui.css">
-  <link href="dist/videojs-yt-style.css" rel="stylesheet">
-  <!-- BLOCK Eruda -->
-  <script src="node_modules/eruda/eruda.js"></script>
-  <script src="node_modules/eruda-fps/eruda-fps.min.js"></script>
-  <script src="node_modules/eruda-features/eruda-features.js"></script>
-  <script src="node_modules/eruda-memory/eruda-memory.min.js"></script>
-  <script src="node_modules/eruda-code/eruda-code.js"></script>
-  <script src="node_modules/eruda-dom/eruda-dom.js"></script>
-  <script src="node_modules/eruda-orientation/eruda-orientation.min.js"></script>
-  <script src="node_modules/eruda-touches/eruda-touches.js"></script>
-  <script src="./docs/js/erudaExternal.js"></script>
-  <!-- ENDBLOCK -->
+  <link rel="stylesheet" href="dist/videojs-yt-style.css">
   <style>
     body {
       margin: 0;
@@ -59,7 +48,7 @@
   <script>
     const playerOptions = {
       html5: {
-        nativeCaptions: false,
+        // nativeCaptions: false,
         hls: {
           overrideNative: true
         },
