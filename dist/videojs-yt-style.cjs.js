@@ -120,6 +120,35 @@ var ProgressBarPadding = /*#__PURE__*/function (_Component) {
 
 videojs__default['default'].registerComponent('ProgressBarPadding', ProgressBarPadding);
 
+var progressBarPadding = function progressBarPadding(player) {
+  player.getChild('controlBar').getChild('progressControl').getChild('seekBar').addChild('ProgressBarPadding');
+};
+
+var sizeProperty = function sizeProperty(player) {
+  var resizeHandle = function resizeHandle() {
+    var _player$currentDimens = player.currentDimensions(),
+        width = _player$currentDimens.width,
+        height = _player$currentDimens.height;
+
+    player.el().style.setProperty('--player-width', width + "px");
+    player.el().style.setProperty('--player-height', height + "px");
+  };
+
+  resizeHandle();
+  player.on('playerresize', resizeHandle);
+};
+
+var dashHlsBitrateSwitcher = function dashHlsBitrateSwitcher(player) {
+  if (player.usingPlugin('dashHlsBitrateSwitcher')) {
+    // https://github.com/samueleastdev/videojs-dash-hls-bitrate-switcher/blob/master/src/plugin.js#L54-L68
+    player.one('loadstart', function () {
+      player.one(videojs__default['default'].browser.IS_IOS ? 'canplaythrough' : 'loadedmetadata', function () {
+        player.getChild('controlBar').getChild('RatesButton').controlText('Bitrate');
+      });
+    });
+  }
+};
+
 var Plugin = videojs__default['default'].getPlugin('plugin'); // Default options for the plugin.
 
 var defaults = {};
@@ -151,17 +180,10 @@ var YtStyle = /*#__PURE__*/function (_Plugin) {
     // the parent class will add player under this.player
     _this = _Plugin.call(this, player) || this;
     _this.options = videojs__default['default'].mergeOptions(defaults, options);
+    progressBarPadding(_this.player);
+    sizeProperty(_this.player); // plugins
 
-    _this.player.controlBar.progressControl.seekBar.addChild('ProgressBarPadding');
-
-    _this.player.on('playerresize', function (e) {
-      var _player$currentDimens = player.currentDimensions(),
-          width = _player$currentDimens.width,
-          height = _player$currentDimens.height;
-
-      player.el().style.setProperty('--player-width', width + "px");
-      player.el().style.setProperty('--player-height', height + "px");
-    });
+    dashHlsBitrateSwitcher(_this.player);
 
     _this.player.ready(function () {
       _this.player.addClass('vjs-yt-style');
