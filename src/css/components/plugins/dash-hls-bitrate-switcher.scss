@@ -1,0 +1,16 @@
+.video-js .vjs-dash-hls-bitrate-switcher-menu .vjs-icon-cog {
+  font-family: inherit;
+
+  &:before {
+    content: "";
+    display: none;
+  }
+
+  &.vjs-menu-button .vjs-icon-placeholder {
+    font-family: VideoJS;
+
+    &:before {
+      content: "\f110";
+    }
+  }
+}

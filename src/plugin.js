@@ -1,8 +1,14 @@
 import videojs from 'video.js';
 import {version as VERSION} from '../package.json';
 
-import './js/features/keep-TimeTooltip-In-SeekBar';
+import './js/features/keep-timetooltip-in-seekbar';
 import './js/components/progress-bar-padding';
+
+import progressBarPaddingPatch from './js/features/progress-bar-padding';
+import sizePropertyPatch from './js/features/size-property';
+
+// plugins
+import dashHlsBitrateSwitcherPatch from './js/features/plugins/dash-hls-bitrate-switcher';
 
 const Plugin = videojs.getPlugin('plugin');
 
@@ -35,14 +41,11 @@ class YtStyle extends Plugin {
 
     this.options = videojs.mergeOptions(defaults, options);
 
-    this.player.controlBar.progressControl.seekBar.addChild('ProgressBarPadding');
+    progressBarPaddingPatch(this.player);
+    sizePropertyPatch(this.player);
 
-    this.player.on('playerresize', function(e) {
-      const {width, height} = player.currentDimensions();
-
-      player.el().style.setProperty('--player-width', `${width}px`);
-      player.el().style.setProperty('--player-height', `${height}px`);
-    });
+    // plugins
+    dashHlsBitrateSwitcherPatch(this.player);
 
     this.player.ready(() => {
       this.player.addClass('vjs-yt-style');

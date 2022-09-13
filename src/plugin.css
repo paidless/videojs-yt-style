@@ -31,3 +31,4 @@
 
 @import './css/components/plugins/settings-menu.scss';
 @import './css/components/plugins/mobile-ui.scss';
+@import './css/components/plugins/dash-hls-bitrate-switcher.scss';

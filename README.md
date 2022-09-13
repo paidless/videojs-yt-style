@@ -14,6 +14,7 @@ Connect to other VideoJS Plugin (Checked means support, unchecked means it will 
 - [x] [videojs-dash-hls-bitrate-switcher](https://github.com/samueleastdev/videojs-dash-hls-bitrate-switcher) -> Use with videojs-settings-menu.
 - [x] [videojs-mobile-ui](https://github.com/mister-ben/videojs-mobile-ui) -> Improved mobile experience.
 - [ ] [videojs-vtt-thumbnails](https://github.com/mayeaux/videojs-vtt-thumbnails) -> Display the thumbnails in seeking.
+- [ ] [videojs-hotkeys](https://github.com/ctd1500/videojs-hotkeys) -> Adds more hotkey support to VideoJS
 
 And more (You can tip me on Issues).
 
