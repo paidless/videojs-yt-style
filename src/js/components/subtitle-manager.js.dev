@@ -1,0 +1,62 @@
+import videojs from 'video.js';
+
+const Component = videojs.getComponent('Component');
+
+// https://github.com/Pong420/videojs-plus/blob/master/source/Plugin/Subtitles/Subtitles.js
+
+class SubtitleManager extends Component {
+  constructor(player, options = {}) {
+    super(player, options);
+
+    this.lastShowing_ = null;
+
+    const handleSubtitleChangeEvent = () => {
+      this.lastShowing(this.active());
+      // console.log('subtitle_change:', this.active());
+    }
+
+    player.textTracks().on('change', handleSubtitleChangeEvent);
+    player.on('dispose', () => {
+      player.textTracks().off('change', handleSubtitleChangeEvent);
+    });
+  }
+
+  lastShowing(textTrack) {
+    if (!textTrack) return this.lastShowing_;
+    this.lastShowing_ = textTrack;
+    return textTrack;
+  }
+
+  current() {
+    const textTrackList = [];
+    const textTracks = this.player_.textTracks();
+    let currentTrack;
+    for (let index = 0; index < textTracks.length; index++) {
+      currentTrack = textTracks[index];
+      if (currentTrack.kind === 'subtitles')
+        textTrackList.push(currentTrack);
+    }
+    return textTrackList;
+  }
+
+  //examplePlayer.subtitles.current().indexOf(examplePlayer.subtitles.active())
+
+  active() {
+    for (let textTrack of this.current()) {
+      if (textTrack.mode === 'showing') {
+        return textTrack;
+      }
+    }
+  }
+
+  close() {
+    const active = this.active();
+    if (!active) return;
+    active.mode = 'disabled';
+    this.lastShowing(active);
+    return active;
+  }
+}
+
+videojs.registerComponent('SubtitleManager', SubtitleManager);
+export default SubtitleManager;

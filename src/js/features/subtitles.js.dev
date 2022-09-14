@@ -1,0 +1,9 @@
+import SubtitleManager from "../components/subtitle-manager";
+
+const subtitles = (player) => {
+  // player.one('loadstart', () => {
+    player.subtitles = new SubtitleManager(player);
+  // });
+}
+
+export default subtitles;
