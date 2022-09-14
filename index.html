@@ -44,6 +44,7 @@
     src="node_modules/@samueleastdev/videojs-dash-hls-bitrate-switcher/dist/videojs-dash-hls-bitrate-switcher.js"></script>
   <script src="node_modules/@samueleastdev/videojs-settings-menu/dist/videojs-settings-menu.js"></script>
   <script src="node_modules/videojs-mobile-ui/dist/videojs-mobile-ui.min.js"></script>
+  <script src="node_modules/videojs-hotkeys/videojs.hotkeys.min.js"></script>
   <script src="dist/videojs-yt-style.js"></script>
   <script>
     const playerOptions = {
@@ -94,7 +95,7 @@
     (function (window, videojs) {
       var examplePlayer = window.examplePlayer = videojs('videojs-yt-style-player', playerOptions);
       var examplePlayer_ytStyle = window.examplePlayer_ytStyle = examplePlayer.ytStyle();
-      examplePlayer.mobileUi();
+      examplePlayer.hotkeys();
 
       // examplePlayer.on('fpsupdate', () => { console.log( examplePlayer.id(), examplePlayer.fps(), examplePlayer.fps_.certainty) });
     }(window, window.videojs));
@@ -102,7 +103,6 @@
     (function (window, videojs) {
       var exampleLivePlayer = window.exampleLivePlayer = videojs('videojs-yt-style-live-player', playerOptions);
       var exampleLivePlayer_ytStyle = window.exampleLivePlayer_ytStyle = exampleLivePlayer.ytStyle();
-      exampleLivePlayer.mobileUi();
 
       // exampleLivePlayer.on('fpsupdate', () => { console.log( exampleLivePlayer.id(), exampleLivePlayer.fps(), exampleLivePlayer.fps_.certainty) });
     }(window, window.videojs));
