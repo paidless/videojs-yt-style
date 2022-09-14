@@ -6,6 +6,7 @@ import './js/components/progress-bar-padding';
 
 import progressBarPaddingPatch from './js/features/progress-bar-padding';
 import sizePropertyPatch from './js/features/size-property';
+import fpsPatch from './js/features/fps';
 
 // plugins
 import dashHlsBitrateSwitcherPatch from './js/features/plugins/dash-hls-bitrate-switcher';
@@ -43,6 +44,7 @@ class YtStyle extends Plugin {
 
     progressBarPaddingPatch(this.player);
     sizePropertyPatch(this.player);
+    fpsPatch(this.player);
 
     // plugins
     dashHlsBitrateSwitcherPatch(this.player);
