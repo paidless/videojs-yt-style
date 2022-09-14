@@ -94,13 +94,17 @@
     (function (window, videojs) {
       var examplePlayer = window.examplePlayer = videojs('videojs-yt-style-player', playerOptions);
       var examplePlayer_ytStyle = window.examplePlayer_ytStyle = examplePlayer.ytStyle();
-      var examplePlayer_mobileUi = window.examplePlayer_mobileUi = examplePlayer.mobileUi();
+      examplePlayer.mobileUi();
+
+      // examplePlayer.on('fpsupdate', () => { console.log( examplePlayer.id(), examplePlayer.fps(), examplePlayer.fps_.certainty) });
     }(window, window.videojs));
 
     (function (window, videojs) {
       var exampleLivePlayer = window.exampleLivePlayer = videojs('videojs-yt-style-live-player', playerOptions);
       var exampleLivePlayer_ytStyle = window.exampleLivePlayer_ytStyle = exampleLivePlayer.ytStyle();
-      var exampleLivePlayer_mobileUi = window.exampleLivePlayer_mobileUi = exampleLivePlayer.mobileUi();
+      exampleLivePlayer.mobileUi();
+
+      // exampleLivePlayer.on('fpsupdate', () => { console.log( exampleLivePlayer.id(), exampleLivePlayer.fps(), exampleLivePlayer.fps_.certainty) });
     }(window, window.videojs));
   </script>
 </body>

@@ -64,7 +64,7 @@ const fps = (player) => {
     }
 
     // Not html5 video
-    if (player.tech().name !== 'Html5') {
+    if (player.tech().name() !== 'Html5') {
       return;
     }
 

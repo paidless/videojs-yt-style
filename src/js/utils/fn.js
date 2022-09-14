@@ -20,7 +20,7 @@ export const UPDATE_REFRESH_INTERVAL = 30;
  * @return   {Function}
  *           A debounced function.
  */
-const debounce = function(func, delay, immediate = false) { // eslint-disable-line no-unused-vars
+export const debounce = function(func, delay, immediate = false) { // eslint-disable-line no-unused-vars
   let timer;
   let fastRun = true;
   /* eslint-disable consistent-this */
@@ -56,7 +56,7 @@ const debounce = function(func, delay, immediate = false) { // eslint-disable-li
  * @return   {Function}
  *           Closure return function.
  */
-const throttle = (func, limit) => { // eslint-disable-line no-unused-vars
+export const throttle = (func, limit) => { // eslint-disable-line no-unused-vars
   let lastFunc;
   let lastRan;
   /* eslint-disable consistent-this */
