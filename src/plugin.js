@@ -3,12 +3,12 @@ import { version as VERSION } from '../package.json';
 
 import './js/features/keep-timetooltip-in-seekbar';
 import './js/components/progress-bar-padding';
-// import './js/components/subtitle-manager';
+import './js/components/subtitle-manager';
 
 import progressBarPaddingPatch from './js/features/progress-bar-padding';
 import sizePropertyPatch from './js/features/size-property';
 import fpsPatch from './js/features/fps';
-// import subtitlesPatch from './js/features/subtitles';
+import subtitlesPatch from './js/features/subtitles';
 
 // plugins
 import dashHlsBitrateSwitcherPatch from './js/features/plugins/dash-hls-bitrate-switcher';
@@ -49,7 +49,7 @@ class YtStyle extends Plugin {
     progressBarPaddingPatch(this.player);
     sizePropertyPatch(this.player);
     fpsPatch(this.player);
-    // subtitlesPatch(this.player);
+    subtitlesPatch(this.player);
 
     // plugins
     dashHlsBitrateSwitcherPatch(this.player);

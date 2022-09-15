@@ -15,23 +15,31 @@
 
     .container {
       margin: 8px;
+      max-width: 1080px;
+    }
+
+    .video-js {
+      width: 100%;
     }
   </style>
 </head>
 
 <body>
   <div class="container">
+    <h2>VOD</h2>
     <video id="videojs-yt-style-player" class="video-js vjs-default-skin" controls>
       <!-- <source src="//vjs.zencdn.net/v/oceans.mp4" type='video/mp4'> -->
       <!-- <source src="//vjs.zencdn.net/v/oceans.webm" type='video/webm'> -->
       <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8" type="application/x-mpegURL">
     </video>
 
-    <hr>
-
+    <h2>LIVE</h2>
     <video id="videojs-yt-style-live-player" class="video-js vjs-default-skin" controls>
       <source src="//storage.googleapis.com/shaka-live-assets/player-source.mpd" type="application/dash+xml">
     </video>
+
+    <br>
+    <hr>
 
     <ul>
       <li><a href="/test/debug.html">Run unit tests in browser.</a></li>
