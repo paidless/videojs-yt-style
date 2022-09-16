@@ -8,6 +8,9 @@ const sizeProperty = (player) => {
 
   resizeHandle();
   player.on('playerresize', resizeHandle);
+  player.on('dispose', () => {
+    player.off('playerresize', resizeHandle);
+  });
 };
 
 export default sizeProperty;

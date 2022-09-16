@@ -1,9 +1,9 @@
 import { throttle, UPDATE_REFRESH_INTERVAL } from '../utils/fn';
 import document from 'global/document';
 
-const frameEvent = (videoElement, func) => {
+const frameEvent = (player, func) => {
   // Part 1:
-  const vid = videoElement;
+  const vid = player.tech().el();
   let lastMediaTime; let lastFrameNum; let fps;
   const fpsRounder = [];
   let frameNotSeeked = true;
@@ -26,6 +26,7 @@ const frameEvent = (videoElement, func) => {
       document.hasFocus()
     ) {
       fpsRounder.push(diff);
+      // console.log('ticker', fpsRounder.length);
       fps = Math.round(1 / getFpsAverage());
 
       // document.querySelector("#info").textContent = "FPS: " + fps + ", certainty: " + fpsRounder.length * 2 + "%";
@@ -42,10 +43,18 @@ const frameEvent = (videoElement, func) => {
 
   vid.requestVideoFrameCallback(ticker);
   // Part 3:
-  vid.addEventListener('seeked', function() {
+  const seekedHandle = () => {
     fpsRounder.pop();
+    // console.warn('seeked', fpsRounder.length);
     frameNotSeeked = false;
+  };
+
+  player.on('seeked', seekedHandle);
+  player.on('dispose', () => {
+    player.off('seeked', seekedHandle);
   });
+
+  // vid.addEventListener('seeked', seekedHandle);
 };
 
 const fps = (player) => {
@@ -64,6 +73,7 @@ const fps = (player) => {
     }
 
     // Not html5 video
+    // https://github.com/videojs/video.js/issues/2617
     if (player.tech().name() !== 'Html5') {
       return;
     }
@@ -76,7 +86,7 @@ const fps = (player) => {
     };
     const fpsUpdateHandle = throttle(fpsUpdate, UPDATE_REFRESH_INTERVAL);
 
-    frameEvent(player.tech().el(), fpsUpdateHandle);
+    frameEvent(player, fpsUpdateHandle);
   });
 };
 
