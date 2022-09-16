@@ -98,7 +98,7 @@ class SubtitleManager extends Component {
     // Check user browser preferred language.
     const defaultTextTrack = allTextTrack[defaultIndex];
 
-    if (isLangMatched(defaultTextTrack.language, window.navigator.language)) {
+    if (defaultTextTrack && isLangMatched(defaultTextTrack.language, window.navigator.language)) {
       return defaultIndex;
     }
 
