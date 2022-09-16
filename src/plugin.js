@@ -9,11 +9,12 @@ import progressBarPaddingPatch from './js/features/progress-bar-padding';
 import sizePropertyPatch from './js/features/size-property';
 import fpsPatch from './js/features/fps';
 import subtitlesPatch from './js/features/subtitles';
+import playbackRateGotoPatch from './js/features/playback-rate-list';
 
 // plugins
 import dashHlsBitrateSwitcherPatch from './js/features/plugins/dash-hls-bitrate-switcher';
 import mobileUiPatch from './js/features/plugins/mobile-ui';
-// import hotkeysPatch from './js/features/plugins/hotkeys';
+import hotkeysPatch from './js/features/plugins/hotkeys';
 
 const Plugin = videojs.getPlugin('plugin');
 
@@ -50,6 +51,7 @@ class YtStyle extends Plugin {
     sizePropertyPatch(this.player);
     fpsPatch(this.player);
     subtitlesPatch(this.player);
+    playbackRateGotoPatch(this.player);
 
     // plugins
     dashHlsBitrateSwitcherPatch(this.player);
@@ -57,7 +59,7 @@ class YtStyle extends Plugin {
     // default enable
     mobileUiPatch(this.player);
 
-    // hotkeysPatch(this.player);
+    hotkeysPatch(this.player);
 
     this.player.ready(() => {
       this.player.addClass('vjs-yt-style');
