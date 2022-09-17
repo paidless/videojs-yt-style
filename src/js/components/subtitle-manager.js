@@ -1,28 +1,24 @@
-import videojs from 'video.js';
-
 import { isLangMatched } from '../utils/lang';
 import window from 'global/window';
-
-const Component = videojs.getComponent('Component');
 
 // https://github.com/Pong420/videojs-plus/blob/master/source/Plugin/Subtitles/Subtitles.js
 
 /**
  * Manager subtitle operate
  */
-class SubtitleManager extends Component {
+class SubtitleManager {
 
   /**
-   * Create a SubtitleManager instance
+   * Create a SubtitleManager instance.
    *
    * @param {Player} player
-   *        A Video.js Player instance
+   *        A Video.js Player instance.
    *
    * @param {Object} options
    *        An optional options object.
    */
   constructor(player, options = {}) {
-    super(player, options);
+    this.player = player;
 
     // Save last showing index of textTrack.
     this.lastShowing_ = null;
@@ -58,15 +54,15 @@ class SubtitleManager extends Component {
   }
 
   /**
-   * Get all subtitles
+   * Get all subtitles.
    *
    * @function
    * @return    {Array}
-   *            Return a text track list
+   *            Return a text track list.
    */
   currentsTextTrack() {
     const textTrackList = [];
-    const textTracks = this.player_.textTracks();
+    const textTracks = this.player.textTracks();
     let currentTrack;
 
     for (let index = 0; index < textTracks.length; index++) {
@@ -139,11 +135,11 @@ class SubtitleManager extends Component {
   }
 
   /**
-   * Get active textTrack index
+   * Get active `textTrack` index.
    *
    * @function
    * @return    {number}
-   *            Return active textTrack index
+   *            Return active `textTrack` index.
    */
   active() {
     let currentIndex = -1;
@@ -156,6 +152,17 @@ class SubtitleManager extends Component {
     }
 
     return currentIndex;
+  }
+
+  /**
+   * Get active `textTrack`.
+   *
+   * @function
+   * @return    {TextTrack}
+   *            Return active `TextTrack`.
+   */
+  activeTextTrack() {
+    return this.getTextTrack(this.active());
   }
 
   /**
@@ -189,7 +196,7 @@ class SubtitleManager extends Component {
   }
 
   /**
-   * Close the subtitle
+   * Close the subtitle.
    *
    * @function
    * @return    {TextTrack}
@@ -207,7 +214,7 @@ class SubtitleManager extends Component {
   }
 
   /**
-   * Quick to Open the subtitle (auto selected the subtitle)
+   * Quick to Open the subtitle (auto selected the subtitle).
    *
    * @function
    * @return    {TextTrack}
@@ -230,5 +237,4 @@ class SubtitleManager extends Component {
   }
 }
 
-videojs.registerComponent('SubtitleManager', SubtitleManager);
 export default SubtitleManager;
