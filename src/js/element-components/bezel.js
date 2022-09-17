@@ -108,7 +108,13 @@ class Bezel extends Component {
       return;
     }
 
-    this.updateTextContent(text);
+    const fixedText = text.trim();
+
+    if (fixedText === '') {
+      return;
+    }
+
+    this.updateTextContent(fixedText);
     this.show();
     this.hideDebounce();
   }
