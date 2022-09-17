@@ -13,8 +13,8 @@ Connect to other VideoJS Plugin (Checked means support, unchecked means it will 
 - [x] [videojs-settings-menu](https://github.com/samueleastdev/videojs-setting-menu) : This is also a very early project, hope the author will continue to maintain it.
 - [x] [videojs-dash-hls-bitrate-switcher](https://github.com/samueleastdev/videojs-dash-hls-bitrate-switcher) : Use with videojs-settings-menu.
 - [x] [videojs-mobile-ui](https://github.com/mister-ben/videojs-mobile-ui) : Improved mobile experience.
+- [x] [videojs-hotkeys](https://github.com/ctd1500/videojs-hotkeys) : Adds more hotkey support to VideoJS
 - [ ] [videojs-vtt-thumbnails](https://github.com/mayeaux/videojs-vtt-thumbnails) : Display the thumbnails in seeking.
-- [ ] [videojs-hotkeys](https://github.com/ctd1500/videojs-hotkeys) : Adds more hotkey support to VideoJS
 
 And more (You can tip me on Issues).
 
@@ -31,6 +31,9 @@ And more (You can tip me on Issues).
   - [Browserify/CommonJS](#browserifycommonjs)
   - [RequireJS/AMD](#requirejsamd)
 - [Added Features](#added-features)
+  - [Bezel](#bezel)
+    - [**Added Component**](#added-component)
+    - [**Added Component Method**](#added-component-method)
   - [Fps](#fps)
     - [**Added Player Attributes**](#added-player-attributes)
     - [**Added Player Methods**](#added-player-methods)
@@ -40,6 +43,8 @@ And more (You can tip me on Issues).
   - [Progress bar padding](#progress-bar-padding)
   - [Size property](#size-property)
     - [**Added CSS Variables**](#added-css-variables)
+  - [Subtitle Manager](#subtitle-manager)
+    - [**Added Player Attributes**](#added-player-attributes-1)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -109,6 +114,22 @@ require(['video.js', 'videojs-yt-style'], function(videojs) {
 
 ## Added Features
 
+### Bezel
+
+Show a bezel bar in player.
+
+#### **Added Component**
+
+- `BezelText` : bezel text element
+- `BezelTextWrapper` : bezel text wrapper element
+- `Bezel` : Control the whole bezel action
+
+#### **Added Component Method**
+
+You can call following method like: `player.getChild('Bezel').something();`.
+
+- `getChild('Bezel').display(string)` : Show specific text 0.5s
+
 ### Fps
 
 Add the fps attributes to player.
@@ -120,7 +141,7 @@ Add the fps attributes to player.
 
 #### **Added Player Methods**
 
-- `fps()` (Return type: Integer) : return the evaluated video fps
+- `fps(value)` (Return type: Integer) : return the evaluated video fps
 
 #### **Added Player Events**
 
@@ -138,7 +159,7 @@ Original this [PR](https://github.com/videojs/video.js/pull/7913).
 
 ### Progress bar padding
 
-Add a component to progress bar, Use it to grow user can hover the progress bar size.
+Add a component to progress bar, use it to grow user can hover the progress bar size.
 
 You can use the `.vjs-progress-bar-padding` css class to set the style.
 
@@ -150,6 +171,14 @@ Add some css var of player size.
 
 - `--player-width` (Unit: Pixel) : player width
 - `--player-height` (Unit: Pixel) : player height
+
+### Subtitle Manager
+
+A better way to control subtitle.
+
+#### **Added Player Attributes**
+
+- `subtitles` : This is a subtitle manager instance, you can found all method in source `src/js/components/subtitle-manager.js`.
 
 ## License
 

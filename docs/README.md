@@ -55,7 +55,6 @@ window.playerOptions = {
 ```js run
 window.basicPlayer = videojs(document.querySelector('#videojs-yt-style-basic-player'), playerOptions);
 window.basicPlayer_ytStyle = basicPlayer.ytStyle(); // highlight-line
-basicPlayer.mobileUi();
 ```
 
 ### Live Example
@@ -70,5 +69,4 @@ basicPlayer.mobileUi();
 ```js run
 window.livePlayer = videojs(document.querySelector('#videojs-yt-style-live-player'), playerOptions);
 window.livePlayer_ytStyle = livePlayer.ytStyle(); // highlight-line
-livePlayer.mobileUi();
 ```

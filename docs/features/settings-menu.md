@@ -7,7 +7,6 @@
 ```js run
 window.playerOptions = {
   html5: {
-    // nativeCaptions: false,
     vhs: {
       overrideNative: true
     },
@@ -45,14 +44,12 @@ window.playerOptions = {
   nativeControlsForTouch: false,
   noUITitleAttributes: true,
   keepTimeTooltipInSeekBar: true,
-  // techOrder: ["html5"],
-  // crossOrigin: "anonymous",
 };
 ```
 
 ### Example
 ```html inject
-<video id="videojs-yt-style-setting-menu-player" class="video-js vjs-default-skin vjs-fluid" controls>
+<video id="videojs-yt-style-example-player" class="video-js vjs-default-skin vjs-fluid" controls>
   <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8" type="application/x-mpegURL">
 </video>
 ```
@@ -60,7 +57,6 @@ window.playerOptions = {
 <br/>
 
 ```js run
-window.settingMenuPlayer = videojs(document.querySelector('#videojs-yt-style-setting-menu-player'), playerOptions);
-window.settingMenuPlayer_ytStyle = settingMenuPlayer.ytStyle(); // highlight-line
-settingMenuPlayer.mobileUi();
+window.examplePlayer = videojs(document.querySelector('#videojs-yt-style-example-player'), playerOptions);
+window.examplePlayer_ytStyle = examplePlayer.ytStyle(); // highlight-line
 ```

@@ -1,4 +1,5 @@
 - [Home](/)
 
 - **Features**
-  - [Setting Menu](./features/setting-menu.md)
+  - [Settings Menu](./features/settings-menu.md)
+  - [Hotkeys](./features/hotkeys.md)
