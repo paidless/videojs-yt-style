@@ -1,6 +1,4 @@
-const getDuration = (player) => {
-  return player.liveTracker.isLive() ? player.liveTracker.liveCurrentTime() : player.duration();
-};
+import { getDuration } from '../../utils/videojs-extra.js';
 
 const customKeys = {
 
@@ -141,11 +139,11 @@ const customKeys = {
       if (player.subtitles.active() < 0) {
         // do open
         player.subtitles.quickOpen();
-        player.getChild('Bezel').display(`${player.subtitles.activeTextTrack().label} Subtitles`);
+        player.getChild('Bezel').display(`${player.localize(player.subtitles.activeTextTrack().label)} ${player.localize('Subtitles')}`);
       } else {
         // do close
         player.subtitles.close();
-        player.getChild('Bezel').display('Subtitles Closed');
+        player.getChild('Bezel').display(`${player.localize('subtitles off', undefined, 'Subtitles Off')}`);
       }
     }
   },
