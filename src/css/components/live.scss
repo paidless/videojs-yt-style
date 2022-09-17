@@ -1,11 +1,16 @@
-.video-js.vjs-live .vjs-live-control {
-  margin-left: 1em;
-}
+.video-js {
+  &.vjs-live .vjs-live-control {
+    margin-left: 1em;
+  }
 
-.video-js .vjs-seek-to-live-control {
-  user-select: none;
+  .vjs-live-control,
+  .vjs-seek-to-live-control {
+    user-select: none;
+    width: auto;
+    white-space: nowrap;
+  }
 
-  .vjs-icon-placeholder {
+  .vjs-seek-to-live-control .vjs-icon-placeholder {
     font-size: 0.8em;
   }
 }
