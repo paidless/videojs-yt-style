@@ -32,9 +32,9 @@ class BezelText extends Component {
 videojs.registerComponent('BezelText', BezelText);
 
 /**
- * Bezel wrapper
+ * Bezel text wrapper
  */
-class BezelWrapper extends Component {
+class BezelTextWrapper extends Component {
 
   // The constructor of a component receives two arguments: the
   // player it will be associated with and an object of options.
@@ -53,12 +53,12 @@ class BezelWrapper extends Component {
 
       // Prefixing classes of elements within a player with "vjs-"
       // is a convention used in Video.js.
-      className: 'vjs-bezel-wrapper'
+      className: 'vjs-bezel-text-wrapper'
     });
   }
 }
 
-videojs.registerComponent('BezelWrapper', BezelWrapper);
+videojs.registerComponent('BezelTextWrapper', BezelTextWrapper);
 
 /**
  * Bezel
@@ -75,7 +75,7 @@ class Bezel extends Component {
 
     this.hideDebounce = debounce(this.hide, 500);
 
-    this.addChild('BezelWrapper');
+    this.addChild('BezelTextWrapper');
 
     if (options.text) {
       this.updateTextContent(options.text);
@@ -97,7 +97,7 @@ class Bezel extends Component {
       return;
     }
 
-    const bezelText = this.getChild('BezelWrapper').getChild('BezelText');
+    const bezelText = this.getChild('BezelTextWrapper').getChild('BezelText');
 
     videojs.dom.emptyEl(bezelText.el());
     videojs.dom.appendContent(bezelText.el(), text);
