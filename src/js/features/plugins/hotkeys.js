@@ -179,7 +179,7 @@ const customKeys = {
 };
 
 const hotkeys = (player) => {
-  if (player.hasPlugin('hotkeys')) {
+  if (player.hasPlugin('hotkeys') && !player.usingPlugin('hotkeys')) {
     player.hotkeys({
       volumeStep: 0.05,
       // seekStep: 5,

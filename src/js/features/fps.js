@@ -1,9 +1,9 @@
 import { throttle, UPDATE_REFRESH_INTERVAL } from '../utils/fn';
 import document from 'global/document';
 
-const frameEvent = (player, func) => {
+const frameEvent = (videoElement, func) => {
   // Part 1:
-  const vid = player.tech().el();
+  const vid = videoElement;
   let lastMediaTime; let lastFrameNum; let fps;
   const fpsRounder = [];
   let frameNotSeeked = true;
@@ -26,10 +26,8 @@ const frameEvent = (player, func) => {
       document.hasFocus()
     ) {
       fpsRounder.push(diff);
-      // console.log('ticker', fpsRounder.length);
       fps = Math.round(1 / getFpsAverage());
 
-      // document.querySelector("#info").textContent = "FPS: " + fps + ", certainty: " + fpsRounder.length * 2 + "%";
       func({
         fps,
         certainty: fpsRounder.length * 2
@@ -45,16 +43,12 @@ const frameEvent = (player, func) => {
   // Part 3:
   const seekedHandle = () => {
     fpsRounder.pop();
-    // console.warn('seeked', fpsRounder.length);
     frameNotSeeked = false;
   };
 
-  player.on('seeked', seekedHandle);
-  player.on('dispose', () => {
-    player.off('seeked', seekedHandle);
-  });
-
-  // vid.addEventListener('seeked', seekedHandle);
+  // You have to listen to the `seeked` event yourself.
+  // Like this: `player.on('seeked', seekedHandle)`
+  return seekedHandle;
 };
 
 const fps = (player) => {
@@ -68,13 +62,17 @@ const fps = (player) => {
 
   // https://videojs.com/guides/tech/#required-events
   player.one('loadstart', () => {
-    if (!player.tech()) {
+    // The fps measurement only can use for Html5 video, so that is safely behavior
+    // https://github.com/videojs/video.js/issues/2617
+    const playerTech = player.tech({ IWillNotUseThisInPlugins: true });
+
+    if (!playerTech) {
       return;
     }
 
     // Not html5 video
     // https://github.com/videojs/video.js/issues/2617
-    if (player.tech().name() !== 'Html5') {
+    if (playerTech.name() !== 'Html5') {
       return;
     }
 
@@ -86,7 +84,12 @@ const fps = (player) => {
     };
     const fpsUpdateHandle = throttle(fpsUpdate, UPDATE_REFRESH_INTERVAL);
 
-    frameEvent(player, fpsUpdateHandle);
+    const seekedHandle = frameEvent(playerTech.el(), fpsUpdateHandle);
+
+    player.on('seeked', seekedHandle);
+    player.on('dispose', () => {
+      player.off('seeked', seekedHandle);
+    });
   });
 };
 

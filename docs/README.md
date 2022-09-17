@@ -22,7 +22,7 @@ VideoJS Skin like YT.
 window.playerOptions = {
   html5: {
     // nativeCaptions: false,
-    hls: {
+    vhs: {
       overrideNative: true
     },
     nativeAudioTracks: false,
