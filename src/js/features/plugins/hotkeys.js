@@ -117,14 +117,10 @@ const customKeys = {
     },
     handler(player, options, e) {
       if (e.key === '<') {
-        // player.DisplayBezel(PlaybackRatePrevMcl());
-        // player.playbackRate(PlaybackRatePrev());
-
+        player.getChild('Bezel').display(`${player.playbackRateGoto.get().prev()}x`);
         player.playbackRateGoto.prev();
       } else {
-        // player.DisplayBezel(PlaybackRateNextMcl());
-        // player.playbackRate(PlaybackRateNext());
-
+        player.getChild('Bezel').display(`${player.playbackRateGoto.get().next()}x`);
         player.playbackRateGoto.next();
       }
     }
@@ -138,43 +134,18 @@ const customKeys = {
       return (e.key === 'c');
     },
     handler(player, options, e) {
-      // if ((Array.isArray(player.subtitles().values()) && player.subtitles().values().length)) {
-      //   if (player.subtitles().values().map(t => t.mode).indexOf('showing') == '-1') {
-      //     var lastSelectSubtitles = player.subtitles().values().indexOf(player.subtitles().track);
-      //     if (lastSelectSubtitles == '-1') {
-      //       var defaultSubtitles = player.options().subtitles.findIndex((option) => option.default === true);
-      //       if (defaultSubtitles == '-1') {
-      //         var vlangSubtitles = player.subtitles().values().map(t => t.language).indexOf(vlang);
-      //         if (vlangSubtitles == '-1') {
-      //           player.subtitles().pick(0);
-      //         } else {
-      //           player.subtitles().pick(vlangSubtitles);
-      //         }
-      //       } else {
-      //         player.subtitles().pick(defaultSubtitles);
-      //       }
-      //     } else {
-      //       player.subtitles().pick(lastSelectSubtitles);
-      //     }
-      //   } else {
-      //     player.subtitles().pick(-1);
-      //   }
-      //   player.DisplayBezel(getSubtitleLabel());
-      // } else {
-      //   player.DisplayBezel('This video has no subtitles');
-      // }
-
       if (player.subtitles.currentsTextTrack().length === 0) {
-        // console.debug('This video has no subtitles');
         return;
       }
 
       if (player.subtitles.active() < 0) {
         // do open
         player.subtitles.quickOpen();
+        player.getChild('Bezel').display(`${player.subtitles.activeTextTrack().label} Subtitles`);
       } else {
         // do close
         player.subtitles.close();
+        player.getChild('Bezel').display('Subtitles Closed');
       }
     }
   },
@@ -194,6 +165,7 @@ const customKeys = {
         if (event.which > 95) {
           sub = 96;
         }
+
         const number = event.which - sub;
         const lastTime = player.currentTime();
 
@@ -235,6 +207,40 @@ const hotkeys = (player) => {
 
       fullscreenKey(e) {
         return ((e.key === 'f') || (e.ctrlKey && e.key === 'Enter'));
+      },
+
+      volumeUpKey(e) {
+        if (e.key !== 'ArrowUp') {
+          return false;
+        }
+        const calc = Math.min(1, player.volume() + this.volumeStep) * 100;
+
+        player.getChild('Bezel').display(`${calc.toFixed(0)}%`);
+        return true;
+      },
+
+      volumeDownKey(e) {
+        if (e.key !== 'ArrowDown') {
+          return false;
+        }
+        const calc = Math.max(0, player.volume() - this.volumeStep) * 100;
+
+        player.getChild('Bezel').display(`${calc.toFixed(0)}%`);
+        return true;
+      },
+
+      muteKey(e) {
+        if (e.key !== 'm') {
+          return false;
+        }
+        let calc = player.volume() * 100;
+
+        if (!player.muted()) {
+          calc = 0;
+        }
+
+        player.getChild('Bezel').display(`${calc.toFixed(0)}%`);
+        return true;
       },
 
       customKeys
