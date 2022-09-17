@@ -7,10 +7,12 @@ const frameEvent = (videoElement, func) => {
   let lastMediaTime; let lastFrameNum; let fps;
   const fpsRounder = [];
   let frameNotSeeked = true;
+
   // Part 4:
   const getFpsAverage = () => {
     return fpsRounder.reduce((a, b) => a + b) / fpsRounder.length;
   };
+
   // Part 2 (with some modifications):
   const ticker = (useless, metadata) => {
     const mediaTimeDiff = Math.abs(metadata.mediaTime - lastMediaTime);
@@ -39,7 +41,11 @@ const frameEvent = (videoElement, func) => {
     vid.requestVideoFrameCallback(ticker);
   };
 
-  vid.requestVideoFrameCallback(ticker);
+  // https://caniuse.com/?search=requestVideoFrameCallback
+  if (vid.requestVideoFrameCallback) {
+    vid.requestVideoFrameCallback(ticker);
+  }
+
   // Part 3:
   const seekedHandle = () => {
     fpsRounder.pop();
@@ -56,9 +62,24 @@ const fps = (player) => {
     fps: 10,
     certainty: 0
   };
-  player.fps = () => {
+
+  player.fps = (value) => {
+    if (typeof value !== 'number') {
+      return player.fps_.fps;
+    }
+
+    player.fps_.fps = value;
+
     return player.fps_.fps;
   };
+
+  const playerOptions = player.options_;
+
+  // Manual set fps
+  if (typeof playerOptions.fps === 'number' && playerOptions.fps > 0) {
+    player.fps(playerOptions.fps);
+    return;
+  }
 
   // https://videojs.com/guides/tech/#required-events
   player.one('loadstart', () => {
@@ -77,7 +98,7 @@ const fps = (player) => {
     }
 
     const fpsUpdate = (details) => {
-      player.fps_.fps = details.fps;
+      player.fps(details.fps);
       player.fps_.certainty = details.certainty;
 
       player.trigger('fpsupdate');
