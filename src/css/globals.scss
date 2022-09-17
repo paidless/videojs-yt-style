@@ -11,6 +11,10 @@
     line-height: inherit;
   }
 
+  &.vjs-fullscreen {
+    font-size: 19px;
+  }
+
   &.vjs-fullscreen,
   &.vjs-fullscreen .vjs-tech {
     width: 100% !important;

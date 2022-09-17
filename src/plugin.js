@@ -2,14 +2,13 @@ import videojs from 'video.js';
 import { version as VERSION } from '../package.json';
 
 import './js/features/keep-timetooltip-in-seekbar';
-import './js/components/progress-bar-padding';
-import './js/components/subtitle-manager';
 
 import progressBarPaddingPatch from './js/features/progress-bar-padding';
 import sizePropertyPatch from './js/features/size-property';
 import fpsPatch from './js/features/fps';
 import subtitlesPatch from './js/features/subtitles';
 import playbackRateGotoPatch from './js/features/playback-rate-list';
+import bezelPatch from './js/features/bezel';
 
 // plugins
 import dashHlsBitrateSwitcherPatch from './js/features/plugins/dash-hls-bitrate-switcher';
@@ -52,13 +51,13 @@ class YtStyle extends Plugin {
     fpsPatch(this.player);
     subtitlesPatch(this.player);
     playbackRateGotoPatch(this.player);
+    bezelPatch(this.player);
 
     // plugins
     dashHlsBitrateSwitcherPatch(this.player);
 
-    // default enable
+    // default enable plugins
     mobileUiPatch(this.player);
-
     hotkeysPatch(this.player);
 
     this.player.ready(() => {
