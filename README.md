@@ -13,8 +13,10 @@ Connect to other VideoJS Plugin (Checked means support, unchecked means it will 
 - [x] [videojs-settings-menu](https://github.com/samueleastdev/videojs-setting-menu) : This is also a very early project, hope the author will continue to maintain it.
 - [x] [videojs-dash-hls-bitrate-switcher](https://github.com/samueleastdev/videojs-dash-hls-bitrate-switcher) : Use with videojs-settings-menu.
 - [x] [videojs-mobile-ui](https://github.com/mister-ben/videojs-mobile-ui) : Improved mobile experience.
-- [x] [videojs-hotkeys](https://github.com/ctd1500/videojs-hotkeys) : Adds more hotkey support to VideoJS
+- [x] [videojs-hotkeys](https://github.com/ctd1500/videojs-hotkeys) : Adds more hotkey support to VideoJS.
 - [ ] [videojs-vtt-thumbnails](https://github.com/mayeaux/videojs-vtt-thumbnails) : Display the thumbnails in seeking.
+- [ ] [videojs-chromecast](https://github.com/silvermine/videojs-chromecast) : Support Chromecast.
+- [ ] [videojs-airplay](https://github.com/silvermine/videojs-airplay) : Support AirPlay.
 
 And more (You can tip me on Issues).
 
