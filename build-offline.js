@@ -51,7 +51,7 @@ function handleFolder(inputPath) {
   if (pathArray[0] === 'dist') {
     outputPath = path.join(saveMainFilePath, ...pathArray);
   } else if (pathArray[0] === 'node_modules') {
-    let slicePos = 0;
+    let slicePos = 1;
     const indexOfDist = pathArray.indexOf('dist');
 
     if (indexOfDist !== -1) {
@@ -66,11 +66,16 @@ function handleFolder(inputPath) {
 
 function genExampleFile() {
   let exampleHtml = fs.readFileSync('index.html', 'utf8');
-  // node_modules/(+)/dist
 
+  // node_modules/(+)/(+)
+  exampleHtml = exampleHtml.replace(/"node_modules\/([^\/]+\/[^\/]+)"/g, '"$1"');
+
+  // node_modules/(+)/dist
   exampleHtml = exampleHtml.replace(/"node_modules\/([^\/]+\/dist\/)/g, '"$1');
+
   // node_modules/(+)/(+)/dist
   exampleHtml = exampleHtml.replace(/"node_modules\/[^\/]+\/([^\/]+\/dist\/)/g, '"$1');
+
   // dist
   exampleHtml = exampleHtml.replace(/"(dist\/)/g, `"${packageInfo.name}/$1`);
 

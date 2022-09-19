@@ -33,11 +33,6 @@
       <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8" type="application/x-mpegURL">
     </video>
 
-    <h2>LIVE</h2>
-    <video id="videojs-yt-style-live-player" class="video-js vjs-default-skin" controls>
-      <source src="//storage.googleapis.com/shaka-live-assets/player-source.mpd" type="application/dash+xml">
-    </video>
-
     <br>
     <hr>
 
@@ -124,10 +119,10 @@
         },
         settingsMenu: {
           items: [
-            // "AudioTrackButton",
-            // "ChaptersButton",
-            // "SubsCapsButton",
-            // "PlaybackRateMenuButton",
+            "AudioTrackButton",
+            "ChaptersButton",
+            "SubsCapsButton",
+            "PlaybackRateMenuButton",
             "RatesButton",
           ],
           languages: {
@@ -160,13 +155,6 @@
       var examplePlayer_ytStyle = window.examplePlayer_ytStyle = examplePlayer.ytStyle();
 
       // examplePlayer.on('fpsupdate', () => { console.log( examplePlayer.id(), examplePlayer.fps(), examplePlayer.fps_.certainty) });
-    }(window, window.videojs));
-
-    (function (window, videojs) {
-      var exampleLivePlayer = window.exampleLivePlayer = videojs('videojs-yt-style-live-player', playerOptions);
-      var exampleLivePlayer_ytStyle = window.exampleLivePlayer_ytStyle = exampleLivePlayer.ytStyle();
-
-      // exampleLivePlayer.on('fpsupdate', () => { console.log( exampleLivePlayer.id(), exampleLivePlayer.fps(), exampleLivePlayer.fps_.certainty) });
     }(window, window.videojs));
   </script>
 </body>
