@@ -1140,11 +1140,11 @@ var customKeys = {
       if (player.subtitles.active() < 0) {
         // do open
         player.subtitles.quickOpen();
-        player.getChild('Bezel').display(player.localize(player.subtitles.activeTextTrack().label) + " " + player.localize('Subtitles'));
+        player.getChild('Bezel').display(player.localize(player.subtitles.activeTextTrack().label) + " " + player.localize('Subtitles On'));
       } else {
         // do close
         player.subtitles.close();
-        player.getChild('Bezel').display("" + player.localize('subtitles off', undefined, 'Subtitles Off'));
+        player.getChild('Bezel').display("" + player.localize('Subtitles Off'));
       }
     }
   },
