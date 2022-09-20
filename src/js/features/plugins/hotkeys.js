@@ -211,9 +211,9 @@ const hotkeys = (player) => {
         if (e.key !== 'ArrowUp') {
           return false;
         }
-        const calc = Math.min(1, player.volume() + this.volumeStep) * 100;
+        const calc = Math.round(Math.min(1, player.volume() + this.volumeStep) * 100);
 
-        player.getChild('Bezel').display(`${calc.toFixed(0)}%`);
+        player.getChild('Bezel').display(`${calc}%`);
         return true;
       },
 
@@ -221,9 +221,9 @@ const hotkeys = (player) => {
         if (e.key !== 'ArrowDown') {
           return false;
         }
-        const calc = Math.max(0, player.volume() - this.volumeStep) * 100;
+        const calc = Math.round(Math.max(0, player.volume() - this.volumeStep) * 100);
 
-        player.getChild('Bezel').display(`${calc.toFixed(0)}%`);
+        player.getChild('Bezel').display(`${calc}%`);
         return true;
       },
 
@@ -231,13 +231,13 @@ const hotkeys = (player) => {
         if (e.key !== 'm') {
           return false;
         }
-        let calc = player.volume() * 100;
+        let calc = Math.round(player.volume() * 100);
 
         if (!player.muted()) {
           calc = 0;
         }
 
-        player.getChild('Bezel').display(`${calc.toFixed(0)}%`);
+        player.getChild('Bezel').display(`${calc}%`);
         return true;
       },
 

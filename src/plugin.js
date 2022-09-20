@@ -9,6 +9,7 @@ import fpsPatch from './js/features/fps';
 import subtitlesPatch from './js/features/subtitles';
 import playbackRateGotoPatch from './js/features/playback-rate-list';
 import bezelPatch from './js/features/bezel';
+import keepVolumePatch from './js/features/keep-volume';
 
 // plugins
 import dashHlsBitrateSwitcherPatch from './js/features/plugins/dash-hls-bitrate-switcher';
@@ -52,6 +53,7 @@ class YtStyle extends Plugin {
     subtitlesPatch(this.player);
     playbackRateGotoPatch(this.player);
     bezelPatch(this.player);
+    keepVolumePatch(this.player);
 
     // plugins
     dashHlsBitrateSwitcherPatch(this.player);

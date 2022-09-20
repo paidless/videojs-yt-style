@@ -47,6 +47,7 @@ And more (You can tip me on Issues).
     - [**Added CSS Variables**](#added-css-variables)
   - [Subtitle Manager](#subtitle-manager)
     - [**Added Player Attributes**](#added-player-attributes-1)
+  - [Keep volume](#keep-volume)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -181,6 +182,10 @@ A better way to control subtitle.
 #### **Added Player Attributes**
 
 - `subtitles` : This is a subtitle manager instance, you can found all method in source `src/js/components/subtitle-manager.js`.
+
+### Keep volume
+
+Keep volume setting in localStorage.
 
 ## License
 
