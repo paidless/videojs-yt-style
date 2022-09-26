@@ -38,6 +38,7 @@ window.playerOptions = {
   nativeControlsForTouch: false,
   noUITitleAttributes: true,
   keepTimeTooltipInSeekBar: true,
+  persistTextTrackSettings: true,
   // techOrder: ["html5"],
   // crossOrigin: "anonymous",
 };

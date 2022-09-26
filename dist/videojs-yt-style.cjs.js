@@ -1,4 +1,4 @@
-/*! @name videojs-yt-style @version 0.1.1 @license UNLICENSED */
+/*! @name videojs-yt-style @version 0.1.4 @license UNLICENSED */
 'use strict';
 
 var _inheritsLoose = require('@babel/runtime/helpers/inheritsLoose');
@@ -13,7 +13,7 @@ var videojs__default = /*#__PURE__*/_interopDefaultLegacy(videojs);
 var document__default = /*#__PURE__*/_interopDefaultLegacy(document);
 var window__default = /*#__PURE__*/_interopDefaultLegacy(window);
 
-var version = "0.1.1";
+var version = "0.1.4";
 
 var Dom = videojs__default['default'].dom; // https://github.com/Ami-OS/video.js/blob/65750e311661e70f170e3652573caacf6f21fcce/src/js/control-bar/progress-control/time-tooltip.js#L54-L133
 
@@ -973,6 +973,50 @@ var bezel = function bezel(player) {
   });
 };
 
+var LOCAL_STORAGE_KEY = 'vjs-volume';
+
+var keepVolume = function keepVolume(player) {
+  var values; // load
+
+  try {
+    var data = JSON.parse(window__default['default'].localStorage.getItem(LOCAL_STORAGE_KEY));
+    values = {
+      muted: data.muted,
+      volume: Number(data.volume) / 100
+    };
+  } catch (err) {
+    player.log.warn(err);
+  }
+
+  if (values) {
+    player.muted(values.muted);
+    player.volume(values.volume);
+  } // change
+
+
+  var volumechangeHandle = function volumechangeHandle() {
+    values = {
+      muted: player.muted(),
+      volume: Math.round(player.volume() * 100)
+    };
+
+    try {
+      if (Object.keys(values).length) {
+        window__default['default'].localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(values));
+      } else {
+        window__default['default'].localStorage.removeItem(LOCAL_STORAGE_KEY);
+      }
+    } catch (err) {
+      player.log.warn(err);
+    }
+  };
+
+  player.on('volumechange', volumechangeHandle);
+  player.on('dispose', function () {
+    player.textTracks().off('volumechange', volumechangeHandle);
+  });
+};
+
 var dashHlsBitrateSwitcher = function dashHlsBitrateSwitcher(player) {
   if (player.usingPlugin('dashHlsBitrateSwitcher')) {
     // https://github.com/samueleastdev/videojs-dash-hls-bitrate-switcher/blob/master/src/plugin.js#L54-L68
@@ -1209,8 +1253,8 @@ var hotkeys = function hotkeys(player) {
           return false;
         }
 
-        var calc = Math.min(1, player.volume() + this.volumeStep) * 100;
-        player.getChild('Bezel').display(calc.toFixed(0) + "%");
+        var calc = Math.round(Math.min(1, player.volume() + this.volumeStep) * 100);
+        player.getChild('Bezel').display(calc + "%");
         return true;
       },
       volumeDownKey: function volumeDownKey(e) {
@@ -1218,8 +1262,8 @@ var hotkeys = function hotkeys(player) {
           return false;
         }
 
-        var calc = Math.max(0, player.volume() - this.volumeStep) * 100;
-        player.getChild('Bezel').display(calc.toFixed(0) + "%");
+        var calc = Math.round(Math.max(0, player.volume() - this.volumeStep) * 100);
+        player.getChild('Bezel').display(calc + "%");
         return true;
       },
       muteKey: function muteKey(e) {
@@ -1227,13 +1271,13 @@ var hotkeys = function hotkeys(player) {
           return false;
         }
 
-        var calc = player.volume() * 100;
+        var calc = Math.round(player.volume() * 100);
 
         if (!player.muted()) {
           calc = 0;
         }
 
-        player.getChild('Bezel').display(calc.toFixed(0) + "%");
+        player.getChild('Bezel').display(calc + "%");
         return true;
       },
       customKeys: customKeys
@@ -1277,7 +1321,8 @@ var YtStyle = /*#__PURE__*/function (_Plugin) {
     fps(_this.player);
     subtitles(_this.player);
     playbackRateGoto(_this.player);
-    bezel(_this.player); // plugins
+    bezel(_this.player);
+    keepVolume(_this.player); // plugins
 
     dashHlsBitrateSwitcher(_this.player); // default enable plugins
 

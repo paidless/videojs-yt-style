@@ -69,6 +69,7 @@ window.playerOptions = {
   nativeControlsForTouch: false,
   noUITitleAttributes: true,
   keepTimeTooltipInSeekBar: true,
+  persistTextTrackSettings: true,
 };
 ```
 
