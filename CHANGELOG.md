@@ -6,14 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-# [0.1.3] - 2022-09-20
+## [0.1.4] - 2022-09-26
 
-## Added
+### Change
+- Only timetip in progress-control will show.
+
+## [0.1.3] - 2022-09-20
+
+### Added
 - Added feature: Keep volume
 
-# [0.1.2] - 2022-09-20
+## [0.1.2] - 2022-09-20
 
-## Added
+### Added
 - Supported: [videojs-settings-menu](https://github.com/samueleastdev/videojs-setting-menu)
 - Supported: [videojs-dash-hls-bitrate-switcher](https://github.com/samueleastdev/videojs-dash-hls-bitrate-switcher)
 - Supported: [videojs-mobile-ui](https://github.com/mister-ben/videojs-mobile-ui)
