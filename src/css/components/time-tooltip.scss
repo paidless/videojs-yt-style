@@ -7,12 +7,30 @@
   display: none !important;
 }
 
-.video-js .vjs-mouse-display {
-  &:after {
-    padding: 0 0.4em 0.3em !important;
+.video-js {
+  .vjs-mouse-display {
+    display: block !important;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0s;
+    background-color: transparent !important;
+    pointer-events: none;
+    z-index: 0 !important;
+
+    &:after {
+      padding: 0 0.4em 0.3em !important;
+    }
+
+    .vjs-time-tooltip {
+      background-color: var(--player-tooltip-background-color);
+    }
   }
 
-  .vjs-time-tooltip {
-    background-color: var(--player-tooltip-background-color);
+  .vjs-progress-control:hover {
+    .vjs-mouse-display {
+      visibility: visible;
+      opacity: 1;
+      transition: visibility .2s, opacity .2s;
+    }
   }
 }
