@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.5] - 2022-09-28
+
+### Fixed
+- Fps feature now will detect the needed function, not the tech name.
+
 ## [0.1.4] - 2022-09-26
 
 ### Change
