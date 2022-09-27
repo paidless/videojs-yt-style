@@ -93,7 +93,7 @@ const fps = (player) => {
 
     // Not html5 video
     // https://github.com/videojs/video.js/issues/2617
-    if (playerTech.name() !== 'Html5') {
+    if (typeof playerTech.el !== 'function' || !playerTech.el().requestVideoFrameCallback) {
       return;
     }
 
