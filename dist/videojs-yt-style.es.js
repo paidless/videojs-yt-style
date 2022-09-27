@@ -1,10 +1,10 @@
-/*! @name videojs-yt-style @version 0.1.4 @license UNLICENSED */
+/*! @name videojs-yt-style @version 0.1.5 @license UNLICENSED */
 import _inheritsLoose from '@babel/runtime/helpers/inheritsLoose';
 import videojs from 'video.js';
 import document from 'global/document';
 import window from 'global/window';
 
-var version = "0.1.4";
+var version = "0.1.5";
 
 var Dom = videojs.dom; // https://github.com/Ami-OS/video.js/blob/65750e311661e70f170e3652573caacf6f21fcce/src/js/control-bar/progress-control/time-tooltip.js#L54-L133
 
@@ -314,7 +314,7 @@ var fps = function fps(player) {
     // https://github.com/videojs/video.js/issues/2617
 
 
-    if (playerTech.name() !== 'Html5') {
+    if (typeof playerTech.el !== 'function' || !playerTech.el().requestVideoFrameCallback) {
       return;
     }
 

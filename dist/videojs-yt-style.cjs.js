@@ -1,4 +1,4 @@
-/*! @name videojs-yt-style @version 0.1.4 @license UNLICENSED */
+/*! @name videojs-yt-style @version 0.1.5 @license UNLICENSED */
 'use strict';
 
 var _inheritsLoose = require('@babel/runtime/helpers/inheritsLoose');
@@ -13,7 +13,7 @@ var videojs__default = /*#__PURE__*/_interopDefaultLegacy(videojs);
 var document__default = /*#__PURE__*/_interopDefaultLegacy(document);
 var window__default = /*#__PURE__*/_interopDefaultLegacy(window);
 
-var version = "0.1.4";
+var version = "0.1.5";
 
 var Dom = videojs__default['default'].dom; // https://github.com/Ami-OS/video.js/blob/65750e311661e70f170e3652573caacf6f21fcce/src/js/control-bar/progress-control/time-tooltip.js#L54-L133
 
@@ -323,7 +323,7 @@ var fps = function fps(player) {
     // https://github.com/videojs/video.js/issues/2617
 
 
-    if (playerTech.name() !== 'Html5') {
+    if (typeof playerTech.el !== 'function' || !playerTech.el().requestVideoFrameCallback) {
       return;
     }
 
