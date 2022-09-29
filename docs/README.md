@@ -6,7 +6,6 @@
   - [Demo](#demo)
     - [Config](#config)
     - [Basic Example](#basic-example)
-    - [Live Example](#live-example)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -33,13 +32,14 @@ window.playerOptions = {
       support: "both",
     }
   },
-  liveui: true,
-  playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],
-  nativeControlsForTouch: false,
-  noUITitleAttributes: true,
-  keepTimeTooltipInSeekBar: true,
-  persistTextTrackSettings: true,
+  liveui: true, // highlight-line
+  playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2], // highlight-line
+  nativeControlsForTouch: false, // highlight-line
+  noUITitleAttributes: true, // highlight-line
+  keepTimeTooltipInSeekBar: true, // highlight-line
+  persistTextTrackSettings: true, // highlight-line
   preferFullWindow: true,
+  alwaysEnableFullWindow: true,
   // techOrder: ["html5"],
   // crossOrigin: "anonymous",
 };
@@ -55,20 +55,6 @@ window.playerOptions = {
 <br/>
 
 ```js run
-window.basicPlayer = videojs(document.querySelector('#videojs-yt-style-basic-player'), playerOptions);
-window.basicPlayer_ytStyle = basicPlayer.ytStyle(); // highlight-line
-```
-
-### Live Example
-```html inject
-<video id="videojs-yt-style-live-player" class="video-js vjs-default-skin vjs-fluid" controls>
-  <source src="//storage.googleapis.com/shaka-live-assets/player-source.mpd" type="application/dash+xml">
-</video>
-```
-
-<br/>
-
-```js run
-window.livePlayer = videojs(document.querySelector('#videojs-yt-style-live-player'), playerOptions);
-window.livePlayer_ytStyle = livePlayer.ytStyle(); // highlight-line
+window.player = videojs(document.querySelector('#videojs-yt-style-basic-player'), playerOptions);
+window.player_ytStyle = player.ytStyle(); // highlight-line
 ```

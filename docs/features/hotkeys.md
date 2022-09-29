@@ -42,27 +42,6 @@ window.playerOptions = {
     dashHlsBitrateSwitcher: {
       support: "both",
     },
-    settingsMenu: {
-      items: [
-        "AudioTrackButton",
-        "ChaptersButton",
-        "SubsCapsButton",
-        "PlaybackRateMenuButton",
-        "RatesButton",
-      ],
-      languages: {
-        settings: "Settings",
-        loading: "Loading",
-        back: "Back",
-        captions_off: "Captions Off",
-        default_audio: "Default Audio",
-        audio: "Audio",
-        subtitles: "Subtitles",
-        chapters: "Chapters",
-        speed: "Speed",
-        quality: "Quality",
-      },
-    },
   },
   liveui: true,
   playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],
@@ -70,14 +49,12 @@ window.playerOptions = {
   noUITitleAttributes: true,
   keepTimeTooltipInSeekBar: true,
   persistTextTrackSettings: true,
-  preferFullWindow: true,
-  alwaysEnableFullWindow: true,
 };
 ```
 
 ### Example
 ```html inject
-<video id="videojs-yt-style-example-player" class="video-js vjs-default-skin vjs-fluid" controls>
+<video id="videojs-yt-style-hotkeys-player" class="video-js vjs-default-skin vjs-fluid" controls>
   <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8" type="application/x-mpegURL">
 </video>
 ```
@@ -85,6 +62,6 @@ window.playerOptions = {
 <br/>
 
 ```js run
-window.examplePlayer = videojs(document.querySelector('#videojs-yt-style-example-player'), playerOptions);
-window.examplePlayer_ytStyle = examplePlayer.ytStyle(); // highlight-line
+window.player = videojs(document.querySelector('#videojs-yt-style-hotkeys-player'), playerOptions);
+window.player_ytStyle = player.ytStyle(); // highlight-line
 ```
