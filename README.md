@@ -48,6 +48,9 @@ And more (You can tip me on Issues).
   - [Subtitle Manager](#subtitle-manager)
     - [**Added Player Attributes**](#added-player-attributes-1)
   - [Keep volume](#keep-volume)
+  - [Full window mode](#full-window-mode)
+    - [**Added Player Options**](#added-player-options-1)
+    - [**Added Player Methods**](#added-player-methods-1)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -186,6 +189,18 @@ A better way to control subtitle.
 ### Keep volume
 
 Keep volume setting in localStorage.
+
+### Full window mode
+
+Include is only full window and fullwindow toggle manager.
+
+#### **Added Player Options**
+
+- `alwaysEnableFullWindow` (Type: Boolean) : Always has are full window button.
+
+#### **Added Player Methods**
+
+- `isOnlyFullWindow()` (Type: Boolean) : Check if only full window is supported.
 
 ## License
 

@@ -10,6 +10,8 @@ import subtitlesPatch from './js/features/subtitles';
 import playbackRateGotoPatch from './js/features/playback-rate-list';
 import bezelPatch from './js/features/bezel';
 import keepVolumePatch from './js/features/keep-volume';
+import isOnlyFullWindowPatch from './js/features/is-only-full-window';
+import fullwindowToggleManagerPatch from './js/features/fullwindow-toggle-manager';
 
 // plugins
 import dashHlsBitrateSwitcherPatch from './js/features/plugins/dash-hls-bitrate-switcher';
@@ -54,6 +56,8 @@ class YtStyle extends Plugin {
     playbackRateGotoPatch(this.player);
     bezelPatch(this.player);
     keepVolumePatch(this.player);
+    isOnlyFullWindowPatch(this.player);
+    fullwindowToggleManagerPatch(this.player);
 
     // plugins
     dashHlsBitrateSwitcherPatch(this.player);

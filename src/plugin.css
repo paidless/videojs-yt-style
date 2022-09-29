@@ -31,6 +31,8 @@
 
 @import './css/components/bezel.scss';
 
+@import './css/components/full-window-toggle.scss';
+
 @import './css/components/plugins/settings-menu.scss';
 @import './css/components/plugins/mobile-ui.scss';
 @import './css/components/plugins/dash-hls-bitrate-switcher.scss';

@@ -148,14 +148,16 @@
       persistTextTrackSettings: true,
       // techOrder: ["html5"],
       // crossOrigin: "anonymous",
+      preferFullWindow: true,
+      alwaysEnableFullWindow: true,
     };
     console.debug('Player init');
 
     (function (window, videojs) {
-      var examplePlayer = window.examplePlayer = videojs('videojs-yt-style-player', playerOptions);
-      var examplePlayer_ytStyle = window.examplePlayer_ytStyle = examplePlayer.ytStyle();
+      var player = window.player = videojs('videojs-yt-style-player', playerOptions);
+      var player_ytStyle = window.player_ytStyle = player.ytStyle();
 
-      // examplePlayer.on('fpsupdate', () => { console.log( examplePlayer.id(), examplePlayer.fps(), examplePlayer.fps_.certainty) });
+      // player.on('fpsupdate', () => { console.log( player.id(), player.fps(), player.fps_.certainty) });
     }(window, window.videojs));
   </script>
 </body>

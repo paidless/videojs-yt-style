@@ -1,0 +1,19 @@
+.video-js .vjs-fullwindow-control {
+  cursor: pointer;
+
+  .vjs-icon-placeholder {
+    font-family: VideoJS;
+    font-weight: normal;
+    font-style: normal;
+
+    &:before {
+      content: "\f10a";
+    }
+  }
+}
+
+body.vjs-full-window .video-js .vjs-fullwindow-control {
+  .vjs-icon-placeholder:before {
+    content: "\f109";
+  }
+}
