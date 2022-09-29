@@ -1157,15 +1157,13 @@ function silencePromise(value) {
   }
 }
 
-var _this2 = undefined;
+var _this = undefined;
 
 var fullwindowToggleManager = function fullwindowToggleManager(player) {
   /**
    * Patch the exit full screen helper
    */
   player.exitFullscreenHelper_ = function exitFullscreenHelper_() {
-    var _this = this;
-
     if (this.isFullWindow) {
       return this.exitFullWindow();
     }
@@ -1177,7 +1175,7 @@ var fullwindowToggleManager = function fullwindowToggleManager(player) {
         // we're splitting the promise here, so, we want to catch the
         // potential error so that this chain doesn't have unhandled errors
         silencePromise(promise.then(function () {
-          return _this.isFullscreen(false);
+          return this.isFullscreen(false);
         }));
       }
 
@@ -1194,7 +1192,7 @@ var fullwindowToggleManager = function fullwindowToggleManager(player) {
       return;
     }
 
-    var autoEvent = autoDisposeEvent(player, _this2);
+    var autoEvent = autoDisposeEvent(player, _this);
     var controlBar = player.getChild('controlBar');
     var fullscreenToggle = controlBar.getChild('FullscreenToggle');
     controlBar.addChild('FullwindowToggle', {}, controlBar.children_.indexOf(fullscreenToggle));
