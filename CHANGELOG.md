@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.6] - 2022-09-30
+
+### Added
+- Full window mode
+
 ## [0.1.5] - 2022-09-28
 
 ### Fixed
