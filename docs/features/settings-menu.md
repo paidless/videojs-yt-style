@@ -46,6 +46,7 @@ window.playerOptions = {
   keepTimeTooltipInSeekBar: true,
   persistTextTrackSettings: true,
   preferFullWindow: true,
+  alwaysEnableFullWindow: true,
 };
 ```
 

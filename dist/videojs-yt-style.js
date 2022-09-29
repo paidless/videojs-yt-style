@@ -1055,6 +1055,227 @@
 	  });
 	};
 
+	var isOnlyFullWindow = function isOnlyFullWindow(player) {
+	  /**
+	   * Detect is only full window was supported.
+	   *
+	   * @return    {boolean}
+	   *            Return detect result.
+	   */
+	  player.isOnlyFullWindow = function () {
+	    // https://github.com/videojs/video.js/blob/9ca2e8764a2cced1efdad730b8c66c4b42a33f7f/src/js/player.js#L2909-L2932
+	    if (player.fsApi_.requestFullscreen) {
+	      return false;
+	    } else if (player.tech_.supportsFullScreen() && !player.options_.preferFullWindow === true) {
+	      // we can't take the video.js controls fullscreen but we can go fullscreen
+	      // with native controls
+	      return false;
+	    } // fullscreen isn't supported so we'll just stretch the video element to
+	    // fill the viewport
+
+
+	    return true;
+	  };
+	};
+
+	var assertThisInitialized = createCommonjsModule(function (module) {
+	  function _assertThisInitialized(self) {
+	    if (self === void 0) {
+	      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	    }
+
+	    return self;
+	  }
+
+	  module.exports = _assertThisInitialized;
+	  module.exports["default"] = module.exports, module.exports.__esModule = true;
+	});
+
+	var autoDisposeEvent = function autoDisposeEvent(player, context) {
+	  return function (target, name, func) {
+	    var args = arguments;
+
+	    var handle = function handle() {
+	      func.apply(context, args);
+	    };
+
+	    target.on(name, handle);
+	    player.on('dispose', function () {
+	      target.off(name, handle);
+	    });
+	  };
+	};
+
+	var Button = videojs__default['default'].getComponent('Button');
+	/**
+	 * Full window toggle button
+	 */
+
+	var FullwindowToggle = /*#__PURE__*/function (_Button) {
+	  inheritsLoose(FullwindowToggle, _Button);
+
+	  /**
+	   * Create a Full window toggle button instance.
+	   *
+	   * @param     {Player} player
+	   *            A Video.js Player instance.
+	   *
+	   * @param     {Object} [options]
+	   *            An optional options object.
+	   */
+	  function FullwindowToggle(player, options) {
+	    var _this;
+
+	    if (options === void 0) {
+	      options = {};
+	    }
+
+	    _this = _Button.call(this, player, options) || this;
+
+	    _this.updateButtonState();
+
+	    var autoEvent = _this.autoEvent = autoDisposeEvent(player, assertThisInitialized(_this));
+	    autoEvent(player, 'enterFullWindow', _this.updateButtonState);
+	    autoEvent(player, 'exitFullWindow', _this.updateButtonState);
+	    return _this;
+	  }
+	  /**
+	   * Set button css class.
+	   *
+	   * @return    {string}
+	   *            Return css class.
+	   */
+
+
+	  var _proto = FullwindowToggle.prototype;
+
+	  _proto.buildCSSClass = function buildCSSClass() {
+	    return "vjs-fullwindow-control " + _Button.prototype.buildCSSClass.call(this);
+	  }
+	  /**
+	   * Button click handle.
+	   *
+	   * @param     {Object} [event]
+	   *            Event data.
+	   */
+	  ;
+
+	  _proto.handleClick = function handleClick(event) {
+	    // console.log('Hi');
+	    if (!this.player_.isFullWindow) {
+	      this.player_.enterFullWindow();
+	    } else {
+	      this.player_.exitFullWindow();
+	    }
+
+	    this.updateButtonState();
+	  }
+	  /**
+	   * Button state update.
+	   */
+	  ;
+
+	  _proto.updateButtonState = function updateButtonState() {
+	    if (!this.player_.isFullWindow) {
+	      this.controlText('Fullwindow');
+	    } else {
+	      this.controlText('Exit Fullwindow');
+	    }
+	  };
+
+	  return FullwindowToggle;
+	}(Button);
+
+	videojs__default['default'].registerComponent('FullwindowToggle', FullwindowToggle);
+
+	/**
+	 * Returns whether an object is `Promise`-like (i.e. has a `then` method).
+	 *
+	 * @param  {Object}  value
+	 *         An object that may or may not be `Promise`-like.
+	 *
+	 * @return {boolean}
+	 *         Whether or not the object is `Promise`-like.
+	 */
+	function isPromise(value) {
+	  return value !== undefined && value !== null && typeof value.then === 'function';
+	}
+	/**
+	 * Silence a Promise-like object.
+	 *
+	 * This is useful for avoiding non-harmful, but potentially confusing "uncaught
+	 * play promise" rejection error messages.
+	 *
+	 * @param  {Object} value
+	 *         An object that may or may not be `Promise`-like.
+	 */
+
+	function silencePromise(value) {
+	  if (isPromise(value)) {
+	    value.then(null, function (e) {});
+	  }
+	}
+
+	var _this2 = undefined;
+
+	var fullwindowToggleManager = function fullwindowToggleManager(player) {
+	  /**
+	   * Patch the exit full screen helper
+	   */
+	  player.exitFullscreenHelper_ = function exitFullscreenHelper_() {
+	    var _this = this;
+
+	    if (this.isFullWindow) {
+	      return this.exitFullWindow();
+	    }
+
+	    if (this.fsApi_.requestFullscreen) {
+	      var promise = document__default['default'][this.fsApi_.exitFullscreen]();
+
+	      if (promise) {
+	        // we're splitting the promise here, so, we want to catch the
+	        // potential error so that this chain doesn't have unhandled errors
+	        silencePromise(promise.then(function () {
+	          return _this.isFullscreen(false);
+	        }));
+	      }
+
+	      return promise;
+	    } else if (this.tech_.supportsFullScreen() && !this.options_.preferFullWindow === true) {
+	      this.techCall_('exitFullScreen');
+	    } else {
+	      this.exitFullWindow();
+	    }
+	  };
+
+	  player.ready(function () {
+	    if (!player.options_.alwaysEnableFullWindow || player.isOnlyFullWindow()) {
+	      return;
+	    }
+
+	    var autoEvent = autoDisposeEvent(player, _this2);
+	    var controlBar = player.getChild('controlBar');
+	    var fullscreenToggle = controlBar.getChild('FullscreenToggle');
+	    controlBar.addChild('FullwindowToggle', {}, controlBar.children_.indexOf(fullscreenToggle));
+	    var fullwindowToggle = controlBar.getChild('FullwindowToggle');
+	    autoEvent(player, 'fullscreenchange', function () {
+	      if (player.isFullscreen()) {
+	        fullwindowToggle.hide();
+	      } else {
+	        fullwindowToggle.show();
+	      }
+	    });
+	    autoEvent(player, 'enterFullWindow', function () {
+	      fullwindowToggle.hide();
+	      fullscreenToggle.controlText('Exit Fullwindow');
+	    });
+	    autoEvent(player, 'exitFullWindow', function () {
+	      fullwindowToggle.show();
+	      fullscreenToggle.controlText('Fullscreen');
+	    });
+	  });
+	};
+
 	var dashHlsBitrateSwitcher = function dashHlsBitrateSwitcher(player) {
 	  if (player.usingPlugin('dashHlsBitrateSwitcher')) {
 	    // https://github.com/samueleastdev/videojs-dash-hls-bitrate-switcher/blob/master/src/plugin.js#L54-L68
@@ -1360,8 +1581,9 @@
 	    subtitles(_this.player);
 	    playbackRateGoto(_this.player);
 	    bezel(_this.player);
-	    keepVolume(_this.player); // fullFullWindowTogglePatch(this.player);
-	    // plugins
+	    keepVolume(_this.player);
+	    isOnlyFullWindow(_this.player);
+	    fullwindowToggleManager(_this.player); // plugins
 
 	    dashHlsBitrateSwitcher(_this.player); // default enable plugins
 
