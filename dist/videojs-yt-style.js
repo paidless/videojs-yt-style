@@ -1055,6 +1055,85 @@
 	  });
 	};
 
+	var Button = videojs__default['default'].getComponent('Button');
+	/**
+	 * Full window toggle button
+	 */
+
+	var FullwindowToggle = /*#__PURE__*/function (_Button) {
+	  inheritsLoose(FullwindowToggle, _Button);
+
+	  /**
+	   * Create a Full window toggle button instance.
+	   *
+	   * @param     {Player} player
+	   *            A Video.js Player instance.
+	   *
+	   * @param     {Object} [options]
+	   *            An optional options object.
+	   */
+	  function FullwindowToggle(player, options) {
+	    var _this;
+
+	    if (options === void 0) {
+	      options = {};
+	    }
+
+	    _this = _Button.call(this, player, options) || this;
+
+	    _this.updateButtonState();
+
+	    return _this;
+	  }
+	  /**
+	   * Set button css class.
+	   *
+	   * @return    {string}
+	   *            Return css class.
+	   */
+
+
+	  var _proto = FullwindowToggle.prototype;
+
+	  _proto.buildCSSClass = function buildCSSClass() {
+	    return "vjs-fullwindow-control " + _Button.prototype.buildCSSClass.call(this);
+	  }
+	  /**
+	   * Button click handle.
+	   *
+	   * @param     {Object} [event]
+	   *            Event data.
+	   */
+	  ;
+
+	  _proto.handleClick = function handleClick(event) {
+	    // console.log('Hi');
+	    if (!this.player_.isFullWindow) {
+	      this.player_.enterFullWindow();
+	    } else {
+	      this.player_.exitFullWindow();
+	    }
+
+	    this.updateButtonState();
+	  }
+	  /**
+	   * Button state update.
+	   */
+	  ;
+
+	  _proto.updateButtonState = function updateButtonState() {
+	    if (!this.player_.isFullWindow) {
+	      this.controlText('Fullwindow');
+	    } else {
+	      this.controlText('Exit Fullwindow');
+	    }
+	  };
+
+	  return FullwindowToggle;
+	}(Button);
+
+	videojs__default['default'].registerComponent('FullwindowToggle', FullwindowToggle);
+
 	var dashHlsBitrateSwitcher = function dashHlsBitrateSwitcher(player) {
 	  if (player.usingPlugin('dashHlsBitrateSwitcher')) {
 	    // https://github.com/samueleastdev/videojs-dash-hls-bitrate-switcher/blob/master/src/plugin.js#L54-L68
@@ -1360,7 +1439,8 @@
 	    subtitles(_this.player);
 	    playbackRateGoto(_this.player);
 	    bezel(_this.player);
-	    keepVolume(_this.player); // plugins
+	    keepVolume(_this.player); // fullFullWindowTogglePatch(this.player);
+	    // plugins
 
 	    dashHlsBitrateSwitcher(_this.player); // default enable plugins
 

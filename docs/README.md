@@ -39,6 +39,7 @@ window.playerOptions = {
   noUITitleAttributes: true,
   keepTimeTooltipInSeekBar: true,
   persistTextTrackSettings: true,
+  preferFullWindow: true,
   // techOrder: ["html5"],
   // crossOrigin: "anonymous",
 };

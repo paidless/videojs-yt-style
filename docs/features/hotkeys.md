@@ -70,6 +70,7 @@ window.playerOptions = {
   noUITitleAttributes: true,
   keepTimeTooltipInSeekBar: true,
   persistTextTrackSettings: true,
+  preferFullWindow: true,
 };
 ```
 
