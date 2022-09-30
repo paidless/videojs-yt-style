@@ -30,7 +30,28 @@ window.playerOptions = {
   plugins: {
     dashHlsBitrateSwitcher: {
       support: "both",
-    }
+    },
+    settingsMenu: {
+      items: [
+        "AudioTrackButton",
+        "ChaptersButton",
+        "SubsCapsButton",
+        "PlaybackRateMenuButton",
+        "RatesButton",
+      ],
+      languages: {
+        settings: "Settings",
+        loading: "Loading",
+        back: "Back",
+        captions_off: "Captions Off",
+        default_audio: "Default Audio",
+        audio: "Audio",
+        subtitles: "Subtitles",
+        chapters: "Chapters",
+        speed: "Speed",
+        quality: "Quality",
+      },
+    },
   },
   liveui: true, // highlight-line
   playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2], // highlight-line

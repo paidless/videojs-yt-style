@@ -51,6 +51,9 @@ And more (You can tip me on Issues).
   - [Full window mode](#full-window-mode)
     - [**Added Player Options**](#added-player-options-1)
     - [**Added Player Methods**](#added-player-methods-1)
+  - [Get duration correctly](#get-duration-correctly)
+    - [**Added Player Methods**](#added-player-methods-2)
+  - [Fix progress](#fix-progress)
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -125,7 +128,6 @@ require(['video.js', 'videojs-yt-style'], function(videojs) {
 Show a bezel bar in player.
 
 #### **Added Component**
-
 - `BezelText` : bezel text element
 - `BezelTextWrapper` : bezel text wrapper element
 - `Bezel` : Control the whole bezel action
@@ -133,7 +135,6 @@ Show a bezel bar in player.
 #### **Added Component Method**
 
 You can call following method like: `player.getChild('Bezel').something();`.
-
 - `getChild('Bezel').display(string)` : Show specific text 0.5s
 
 ### Fps
@@ -141,16 +142,13 @@ You can call following method like: `player.getChild('Bezel').something();`.
 Add the fps attributes to player.
 
 #### **Added Player Attributes**
-
 - `fps_.fps` (Type: Integer) : evaluated video fps
 - `fps._certainty` (Type: Integer) : evaluate certainty
 
 #### **Added Player Methods**
-
 - `fps(value)` (Return type: Integer) : return the evaluated video fps
 
 #### **Added Player Events**
-
 - `fpsupdate` : evaluate fps updated
 
 ### Keep timetooltip in seekbar
@@ -160,7 +158,6 @@ Add a player option to keep time tooptip in seeb bar.
 Original this [PR](https://github.com/videojs/video.js/pull/7913).
 
 #### **Added Player Options**
-
 - `keepTimeTooltipInSeekBar` (Type: Boolean) : Prevents the time tooltip overflow the seek bar
 
 ### Progress bar padding
@@ -174,7 +171,6 @@ You can use the `.vjs-progress-bar-padding` css class to set the style.
 Add some css var of player size.
 
 #### **Added CSS Variables**
-
 - `--player-width` (Unit: Pixel) : player width
 - `--player-height` (Unit: Pixel) : player height
 
@@ -183,7 +179,6 @@ Add some css var of player size.
 A better way to control subtitle.
 
 #### **Added Player Attributes**
-
 - `subtitles` : This is a subtitle manager instance, you can found all method in source `src/js/components/subtitle-manager.js`.
 
 ### Keep volume
@@ -195,12 +190,23 @@ Keep volume setting in localStorage.
 Include is only full window and fullwindow toggle manager.
 
 #### **Added Player Options**
-
 - `alwaysEnableFullWindow` (Type: Boolean) : Always has are full window button.
 
 #### **Added Player Methods**
-
 - `isOnlyFullWindow()` (Type: Boolean) : Check if only full window is supported.
+
+### Get duration correctly
+
+Add player method to fix live source can not get duration problem.
+
+#### **Added Player Methods**
+- `getDuration()` (Type: Number) : Get source duration.
+
+### Fix progress
+
+Fix `VideoJs ProgressBar is slow when dragging with Mouse.` problem: https://github.com/videojs/video.js/issues/4460
+
+Code from: https://github.com/Pong420/videojs-plus/blob/ca74ddceb696ee53fdf934391ca9113e04e93a91/source/Components/ControlBar/Progress/Progress.js
 
 ## License
 
