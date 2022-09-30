@@ -1,11 +1,11 @@
-/*! @name videojs-yt-style @version 0.1.6 @license UNLICENSED */
+/*! @name videojs-yt-style @version 0.1.7 @license UNLICENSED */
 import _inheritsLoose from '@babel/runtime/helpers/inheritsLoose';
 import videojs from 'video.js';
 import document from 'global/document';
 import window from 'global/window';
 import _assertThisInitialized from '@babel/runtime/helpers/assertThisInitialized';
 
-var version = "0.1.6";
+var version = "0.1.7";
 
 var Dom = videojs.dom; // https://github.com/Ami-OS/video.js/blob/65750e311661e70f170e3652573caacf6f21fcce/src/js/control-bar/progress-control/time-tooltip.js#L54-L133
 
@@ -81,6 +81,33 @@ videojs.getComponent('TimeTooltip').prototype.update = function update(seekBarRe
   pullTooltipBy = Math.round(pullTooltipBy);
   this.el_.style.right = "-" + pullTooltipBy + "px";
   this.write(content);
+};
+
+// Code from: https://github.com/Pong420/videojs-plus/blob/ca74ddceb696ee53fdf934391ca9113e04e93a91/source/Components/ControlBar/Progress/Progress.js
+
+var SeekBar = videojs.getComponent('SeekBar');
+
+SeekBar.prototype.getPercent = function getPercent() {
+  var time = this.player_.currentTime();
+  var percent = time / this.player_.getDuration();
+  return percent >= 1 ? 1 : percent;
+};
+
+SeekBar.prototype.handleMouseMove = function handleMouseMove(event) {
+  var player = this.player_; // if (!videojs.dom.isSingleLeftClick(event) || isAdPlaying(player)) {
+
+  if (!videojs.dom.isSingleLeftClick(event)) {
+    return;
+  }
+
+  var newTime = this.calculateDistance(event) * player.getDuration();
+
+  if (newTime === player.getDuration()) {
+    newTime = newTime - 0.1;
+  }
+
+  player.currentTime(newTime);
+  this.update();
 };
 
 var Component$1 = videojs.getComponent('Component');
@@ -1009,14 +1036,14 @@ var keepVolume = function keepVolume(player) {
   });
 };
 
-var isOnlyFullWindow = function isOnlyFullWindow(player) {
+var isOnlyFullWindowMethod = function isOnlyFullWindowMethod(player) {
   /**
    * Detect is only full window was supported.
    *
    * @return    {boolean}
    *            Return detect result.
    */
-  player.isOnlyFullWindow = function () {
+  player.isOnlyFullWindow = function isOnlyFullWindow() {
     // https://github.com/videojs/video.js/blob/9ca2e8764a2cced1efdad730b8c66c4b42a33f7f/src/js/player.js#L2909-L2932
     if (player.fsApi_.requestFullscreen) {
       return false;
@@ -1157,8 +1184,6 @@ function silencePromise(value) {
   }
 }
 
-var _this = undefined;
-
 var fullwindowToggleManager = function fullwindowToggleManager(player) {
   /**
    * Patch the exit full screen helper
@@ -1192,7 +1217,7 @@ var fullwindowToggleManager = function fullwindowToggleManager(player) {
       return;
     }
 
-    var autoEvent = autoDisposeEvent(player, _this);
+    var autoEvent = autoDisposeEvent(player, player);
     var controlBar = player.getChild('controlBar');
     var fullscreenToggle = controlBar.getChild('FullscreenToggle');
     controlBar.addChild('FullwindowToggle', {}, controlBar.children_.indexOf(fullscreenToggle));
@@ -1213,6 +1238,12 @@ var fullwindowToggleManager = function fullwindowToggleManager(player) {
       fullscreenToggle.controlText('Fullscreen');
     });
   });
+};
+
+var getDurationCorrectly = function getDurationCorrectly(player) {
+  player.getDuration = function getDuration() {
+    return this.liveTracker.isLive() ? this.liveTracker.liveCurrentTime() : this.duration();
+  };
 };
 
 var dashHlsBitrateSwitcher = function dashHlsBitrateSwitcher(player) {
@@ -1236,10 +1267,6 @@ var mobileUi = function mobileUi(player) {
   if (player.hasPlugin('mobileUi') && !player.usingPlugin('mobileUi')) {
     player.mobileUi();
   }
-};
-
-var getDuration = function getDuration(player) {
-  return player.liveTracker.isLive() ? player.liveTracker.liveCurrentTime() : player.duration();
 };
 
 var customKeys = {
@@ -1295,13 +1322,13 @@ var customKeys = {
       if (e.key === 'j') {
         player.currentTime(Math.max(0, player.currentTime() - seekStepTime));
 
-        if (lastTime === getDuration(player)) {
+        if (lastTime === player.getDuration()) {
           player.play();
         }
       } else {
-        player.currentTime(Math.min(getDuration(player), player.currentTime() + seekStepTime));
+        player.currentTime(Math.min(player.getDuration(), player.currentTime() + seekStepTime));
 
-        if (lastTime === getDuration(player)) {
+        if (lastTime === player.getDuration()) {
           player.play();
         }
       }
@@ -1321,7 +1348,7 @@ var customKeys = {
         player.currentTime(0);
         player.play();
       } else {
-        player.currentTime(getDuration(player));
+        player.currentTime(player.getDuration());
         player.play();
       }
     }
@@ -1342,7 +1369,7 @@ var customKeys = {
         if (e.key === ',') {
           player.currentTime(Math.max(0, player.currentTime() - frameTime));
         } else {
-          player.currentTime(Math.min(getDuration(player), player.currentTime() + frameTime));
+          player.currentTime(Math.min(player.getDuration(), player.currentTime() + frameTime));
         }
       }
     }
@@ -1409,9 +1436,9 @@ var customKeys = {
 
         var number = event.which - sub;
         var lastTime = player.currentTime();
-        player.currentTime(getDuration(player) * number * 0.1);
+        player.currentTime(player.getDuration() * number * 0.1);
 
-        if (lastTime === getDuration(player)) {
+        if (lastTime === player.getDuration()) {
           player.play();
         }
       }
@@ -1521,8 +1548,9 @@ var YtStyle = /*#__PURE__*/function (_Plugin) {
     playbackRateGoto(_this.player);
     bezel(_this.player);
     keepVolume(_this.player);
-    isOnlyFullWindow(_this.player);
-    fullwindowToggleManager(_this.player); // plugins
+    isOnlyFullWindowMethod(_this.player);
+    fullwindowToggleManager(_this.player);
+    getDurationCorrectly(_this.player); // plugins
 
     dashHlsBitrateSwitcher(_this.player); // default enable plugins
 

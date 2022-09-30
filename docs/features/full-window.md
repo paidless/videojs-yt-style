@@ -1,4 +1,4 @@
-# Setting Menu
+# Full Window
 
 ## Demo
 
