@@ -37,7 +37,7 @@ const fullwindowToggleManager = (player) => {
       return;
     }
 
-    const autoEvent = autoDisposeEvent(player, this);
+    const autoEvent = autoDisposeEvent(player, player);
 
     const controlBar = player.getChild('controlBar');
     const fullscreenToggle = controlBar.getChild('FullscreenToggle');
