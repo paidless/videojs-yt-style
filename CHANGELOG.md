@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.7] - 2022-10-01
+
+### Added
+- Added feature: Get duration correctly
+- Added feature: Fix progress
+- Docs item
+
+### Change
+- Improved docs
+
 ## [0.1.6] - 2022-09-30
 
 ### Added
