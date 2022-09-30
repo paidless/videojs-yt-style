@@ -1,5 +1,3 @@
-import { getDuration } from '../../utils/videojs-extra.js';
-
 const customKeys = {
 
   /**
@@ -53,12 +51,12 @@ const customKeys = {
 
       if (e.key === 'j') {
         player.currentTime(Math.max(0, player.currentTime() - seekStepTime));
-        if (lastTime === getDuration(player)) {
+        if (lastTime === player.getDuration()) {
           player.play();
         }
       } else {
-        player.currentTime(Math.min(getDuration(player), player.currentTime() + seekStepTime));
-        if (lastTime === getDuration(player)) {
+        player.currentTime(Math.min(player.getDuration(), player.currentTime() + seekStepTime));
+        if (lastTime === player.getDuration()) {
           player.play();
         }
       }
@@ -78,7 +76,7 @@ const customKeys = {
         player.currentTime(0);
         player.play();
       } else {
-        player.currentTime(getDuration(player));
+        player.currentTime(player.getDuration());
         player.play();
       }
     }
@@ -99,7 +97,7 @@ const customKeys = {
         if (e.key === ',') {
           player.currentTime(Math.max(0, player.currentTime() - frameTime));
         } else {
-          player.currentTime(Math.min(getDuration(player), player.currentTime() + frameTime));
+          player.currentTime(Math.min(player.getDuration(), player.currentTime() + frameTime));
         }
       }
     }
@@ -167,8 +165,8 @@ const customKeys = {
         const number = event.which - sub;
         const lastTime = player.currentTime();
 
-        player.currentTime(getDuration(player) * number * 0.1);
-        if (lastTime === getDuration(player)) {
+        player.currentTime(player.getDuration() * number * 0.1);
+        if (lastTime === player.getDuration()) {
           player.play();
         }
       }
