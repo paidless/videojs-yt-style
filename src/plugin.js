@@ -2,6 +2,7 @@ import videojs from 'video.js';
 import { version as VERSION } from '../package.json';
 
 import './js/features/keep-timetooltip-in-seekbar';
+import './js/features/fix-progress';
 
 import progressBarPaddingPatch from './js/features/progress-bar-padding';
 import sizePropertyPatch from './js/features/size-property';
@@ -10,8 +11,9 @@ import subtitlesPatch from './js/features/subtitles';
 import playbackRateGotoPatch from './js/features/playback-rate-list';
 import bezelPatch from './js/features/bezel';
 import keepVolumePatch from './js/features/keep-volume';
-import isOnlyFullWindowPatch from './js/features/is-only-full-window';
+import isOnlyFullWindowMethodPatch from './js/features/is-only-full-window';
 import fullwindowToggleManagerPatch from './js/features/fullwindow-toggle-manager';
+import getDurationCorrectlyPatch from './js/features/get-duration-correctly';
 
 // plugins
 import dashHlsBitrateSwitcherPatch from './js/features/plugins/dash-hls-bitrate-switcher';
@@ -56,8 +58,9 @@ class YtStyle extends Plugin {
     playbackRateGotoPatch(this.player);
     bezelPatch(this.player);
     keepVolumePatch(this.player);
-    isOnlyFullWindowPatch(this.player);
+    isOnlyFullWindowMethodPatch(this.player);
     fullwindowToggleManagerPatch(this.player);
+    getDurationCorrectlyPatch(this.player);
 
     // plugins
     dashHlsBitrateSwitcherPatch(this.player);
