@@ -1,4 +1,6 @@
-const customKeys = {
+import videojs from 'video.js';
+
+const defaultCustomKeys = {
 
   /**
    * https://github.com/ctd1500/videojs-hotkeys/issues/73
@@ -175,6 +177,13 @@ const customKeys = {
 };
 
 const hotkeys = (player) => {
+  const extraHotkeys = player.options_.extraHotkeys;
+  let customKeys = defaultCustomKeys;
+
+  if (extraHotkeys) {
+    customKeys = videojs.mergeOptions(customKeys, extraHotkeys);
+  }
+
   if (player.hasPlugin('hotkeys') && !player.usingPlugin('hotkeys')) {
     player.hotkeys({
       volumeStep: 0.05,

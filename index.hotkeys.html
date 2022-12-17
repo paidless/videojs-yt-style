@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>videojs-yt-style Demo</title>
+  <link rel="stylesheet" href="node_modules/video.js/dist/video-js.css">
+  <link rel="stylesheet" href="node_modules/@samueleastdev/videojs-settings-menu/dist/videojs-settings-menu.css">
+  <link rel="stylesheet" href="node_modules/videojs-mobile-ui/dist/videojs-mobile-ui.css">
+  <link rel="stylesheet" href="dist/videojs-yt-style.css">
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .container {
+      margin: 8px;
+      max-width: 1080px;
+    }
+
+    .video-js {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>VOD</h2>
+    <video id="videojs-yt-style-player" class="video-js vjs-default-skin" controls>
+      <!-- <source src="//vjs.zencdn.net/v/oceans.mp4" type='video/mp4'> -->
+      <!-- <source src="//vjs.zencdn.net/v/oceans.webm" type='video/webm'> -->
+      <source src="//d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8" type="application/x-mpegURL">
+    </video>
+
+    <br>
+    <hr>
+
+    <ul>
+      <li><a href="/test/debug.html">Run unit tests in browser.</a></li>
+      <li><a href="docs/api/">Read generated docs.</a></li>
+      <li><a href="index.settings-menu.html">Settings menu</a></li>
+    </ul>
+  </div>
+  <script src="node_modules/video.js/dist/video.js"></script>
+  <!-- BLOCK i18n -->
+  <script src="node_modules/video.js/dist/lang/ar.js"></script>
+  <script src="node_modules/video.js/dist/lang/ba.js"></script>
+  <script src="node_modules/video.js/dist/lang/bg.js"></script>
+  <script src="node_modules/video.js/dist/lang/ca.js"></script>
+  <script src="node_modules/video.js/dist/lang/cs.js"></script>
+  <script src="node_modules/video.js/dist/lang/cy.js"></script>
+  <script src="node_modules/video.js/dist/lang/da.js"></script>
+  <script src="node_modules/video.js/dist/lang/de.js"></script>
+  <script src="node_modules/video.js/dist/lang/el.js"></script>
+  <script src="node_modules/video.js/dist/lang/en.js"></script>
+  <script src="node_modules/video.js/dist/lang/es.js"></script>
+  <script src="node_modules/video.js/dist/lang/et.js"></script>
+  <script src="node_modules/video.js/dist/lang/eu.js"></script>
+  <script src="node_modules/video.js/dist/lang/fa.js"></script>
+  <script src="node_modules/video.js/dist/lang/fi.js"></script>
+  <script src="node_modules/video.js/dist/lang/fr.js"></script>
+  <script src="node_modules/video.js/dist/lang/gd.js"></script>
+  <script src="node_modules/video.js/dist/lang/gl.js"></script>
+  <script src="node_modules/video.js/dist/lang/he.js"></script>
+  <script src="node_modules/video.js/dist/lang/hi.js"></script>
+  <script src="node_modules/video.js/dist/lang/hr.js"></script>
+  <script src="node_modules/video.js/dist/lang/hu.js"></script>
+  <script src="node_modules/video.js/dist/lang/it.js"></script>
+  <script src="node_modules/video.js/dist/lang/ja.js"></script>
+  <script src="node_modules/video.js/dist/lang/ko.js"></script>
+  <script src="node_modules/video.js/dist/lang/lv.js"></script>
+  <script src="node_modules/video.js/dist/lang/nb.js"></script>
+  <script src="node_modules/video.js/dist/lang/nl.js"></script>
+  <script src="node_modules/video.js/dist/lang/nn.js"></script>
+  <script src="node_modules/video.js/dist/lang/oc.js"></script>
+  <script src="node_modules/video.js/dist/lang/pl.js"></script>
+  <script src="node_modules/video.js/dist/lang/pt-BR.js"></script>
+  <script src="node_modules/video.js/dist/lang/pt-PT.js"></script>
+  <script src="node_modules/video.js/dist/lang/ro.js"></script>
+  <script src="node_modules/video.js/dist/lang/ru.js"></script>
+  <script src="node_modules/video.js/dist/lang/sk.js"></script>
+  <script src="node_modules/video.js/dist/lang/sl.js"></script>
+  <script src="node_modules/video.js/dist/lang/sr.js"></script>
+  <script src="node_modules/video.js/dist/lang/sv.js"></script>
+  <script src="node_modules/video.js/dist/lang/te.js"></script>
+  <script src="node_modules/video.js/dist/lang/th.js"></script>
+  <script src="node_modules/video.js/dist/lang/tr.js"></script>
+  <script src="node_modules/video.js/dist/lang/uk.js"></script>
+  <script src="node_modules/video.js/dist/lang/vi.js"></script>
+  <script src="node_modules/video.js/dist/lang/zh-CN.js"></script>
+  <script src="node_modules/video.js/dist/lang/zh-Hans.js"></script>
+  <script src="node_modules/video.js/dist/lang/zh-Hant.js"></script>
+  <script src="node_modules/video.js/dist/lang/zh-TW.js"></script>
+  <!-- ENDBLOCK -->
+  <script src="node_modules/videojs-contrib-quality-levels/dist/videojs-contrib-quality-levels.js"></script>
+  <script
+    src="node_modules/@samueleastdev/videojs-dash-hls-bitrate-switcher/dist/videojs-dash-hls-bitrate-switcher.js"></script>
+  <script src="node_modules/@samueleastdev/videojs-settings-menu/dist/videojs-settings-menu.js"></script>
+  <script src="node_modules/videojs-mobile-ui/dist/videojs-mobile-ui.min.js"></script>
+  <script src="node_modules/videojs-hotkeys/videojs.hotkeys.min.js"></script>
+  <script src="dist/videojs-yt-style.js"></script>
+  <!-- BLOCK PLUGIN i18n -->
+  <script src="dist/lang/en.js"></script>
+  <script src="dist/lang/zh-Hant.js"></script>
+  <script src="dist/lang/zh-TW.js"></script>
+  <!-- ENDBLOCK-->
+  <script>
+    const playerOptions = {
+      html5: {
+        // nativeCaptions: false,
+        vhs: {
+          overrideNative: true
+        },
+        nativeAudioTracks: false,
+        nativeVideoTracks: false
+      },
+      plugins: {
+        dashHlsBitrateSwitcher: {
+          support: "both",
+        },
+        settingsMenu: {
+          items: [
+            // "AudioTrackButton",
+            // "ChaptersButton",
+            // "SubsCapsButton",
+            // "PlaybackRateMenuButton",
+            "RatesButton",
+          ],
+          languages: {
+            settings: "Settings",
+            loading: "Loading",
+            back: "Back",
+            captions_off: "Captions Off",
+            default_audio: "Default Audio",
+            audio: "Audio",
+            subtitles: "Subtitles",
+            chapters: "Chapters",
+            speed: "Speed",
+            quality: "Quality",
+          },
+        },
+      },
+      // fps: 60,
+      liveui: true,
+      playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],
+      nativeControlsForTouch: false,
+      noUITitleAttributes: true,
+      keepTimeTooltipInSeekBar: true,
+      persistTextTrackSettings: true,
+      // techOrder: ["html5"],
+      // crossOrigin: "anonymous",
+      preferFullWindow: true,
+      alwaysEnableFullWindow: true,
+      extraHotkeys: {
+        aKey: {
+          key(event) {
+            return event.key === 'a';
+          },
+          handler(player, options, event) {
+            player.getChild('Bezel').display('A');
+          }
+        },
+        dKey: {
+          key(event) {
+            return event.key === 'd';
+          },
+          handler(player, options, event) {
+            player.getChild('Bezel').display('D');
+          }
+        }
+      }
+    };
+    console.debug('Player init');
+
+    (function (window, videojs) {
+      var player = window.player = videojs('videojs-yt-style-player', playerOptions);
+      var player_ytStyle = window.player_ytStyle = player.ytStyle();
+    }(window, window.videojs));
+  </script>
+</body>
+
+</html>
