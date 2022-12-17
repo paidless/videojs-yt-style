@@ -65,3 +65,29 @@ window.playerOptions = {
 window.player = videojs(document.querySelector('#videojs-yt-style-hotkeys-player'), playerOptions);
 window.player_ytStyle = player.ytStyle(); // highlight-line
 ```
+
+## Extra Hotkeys Config
+
+```js
+window.playerOptions = {
+  ...window.playerOptions,
+  extraHotkeys: {
+    aKey: {
+      key(event) {
+        return event.key === 'a';
+      },
+      handler(player, options, event) {
+        player.getChild('Bezel').display('A');
+      }
+    },
+    dKey: {
+      key(event) {
+        return event.key === 'd';
+      },
+      handler(player, options, event) {
+        player.getChild('Bezel').display('D');
+      }
+    }
+  }
+};
+```

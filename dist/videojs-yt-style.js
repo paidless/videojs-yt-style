@@ -1,4 +1,4 @@
-/*! @name videojs-yt-style @version 0.1.7 @license UNLICENSED */
+/*! @name videojs-yt-style @version 0.1.8 @license UNLICENSED */
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('video.js'), require('global/document'), require('global/window')) :
 	typeof define === 'function' && define.amd ? define(['video.js', 'global/document', 'global/window'], factory) :
@@ -51,7 +51,7 @@
 	  module.exports["default"] = module.exports, module.exports.__esModule = true;
 	});
 
-	var version = "0.1.7";
+	var version = "0.1.8";
 
 	var Dom = videojs__default['default'].dom; // https://github.com/Ami-OS/video.js/blob/65750e311661e70f170e3652573caacf6f21fcce/src/js/control-bar/progress-control/time-tooltip.js#L54-L133
 
@@ -1328,7 +1328,7 @@
 	  }
 	};
 
-	var customKeys = {
+	var defaultCustomKeys = {
 	  /**
 	   * https://github.com/ctd1500/videojs-hotkeys/issues/73
 	   */
@@ -1506,6 +1506,13 @@
 	};
 
 	var hotkeys = function hotkeys(player) {
+	  var extraHotkeys = player.options_.extraHotkeys;
+	  var customKeys = defaultCustomKeys;
+
+	  if (extraHotkeys) {
+	    customKeys = videojs__default['default'].mergeOptions(customKeys, extraHotkeys);
+	  }
+
 	  if (player.hasPlugin('hotkeys') && !player.usingPlugin('hotkeys')) {
 	    player.hotkeys({
 	      volumeStep: 0.05,
