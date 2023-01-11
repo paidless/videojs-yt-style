@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.10] - 2023-01-12
+
+### Change
+- Fix subtitle manager method problem
+- Fix subtitles docs
+
 ## [0.1.9] - 2023-01-12
 
 ### Added

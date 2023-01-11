@@ -1,6 +1,6 @@
 {
   "name": "videojs-yt-style",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "VideoJS CSS Skin like YT",
   "main": "dist/videojs-yt-style.cjs.js",
   "module": "dist/videojs-yt-style.es.js",
