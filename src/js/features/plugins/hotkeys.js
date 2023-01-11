@@ -132,7 +132,7 @@ const defaultCustomKeys = {
       return (e.key === 'c');
     },
     handler(player, options, e) {
-      if (player.subtitles.currentsTextTrack().length === 0) {
+      if (player.subtitles.allTextTracks().length === 0) {
         return;
       }
 

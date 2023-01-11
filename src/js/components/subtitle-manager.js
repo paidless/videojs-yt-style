@@ -25,10 +25,9 @@ class SubtitleManager {
 
     const handleSubtitleChangeEvent = () => {
       const currentActive = this.active();
+      const currentTextTrack = this.activeTextTrack();
 
       this.lastShowing(currentActive);
-
-      const currentTextTrack = this.getTextTrack(currentActive);
 
       player.trigger('subtitlechange', {
         index: currentActive,
@@ -281,7 +280,7 @@ class SubtitleManager {
    *            Return a closed `TextTrack` instance.
    */
   close() {
-    const active = this.getTextTrack(this.active());
+    const active = this.activeTextTrack();
 
     if (!active) {
       return;
