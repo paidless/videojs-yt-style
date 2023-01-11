@@ -24,13 +24,91 @@ class SubtitleManager {
     this.lastShowing_ = null;
 
     const handleSubtitleChangeEvent = () => {
-      this.lastShowing(this.active());
+      const currentActive = this.active();
+
+      this.lastShowing(currentActive);
+
+      const currentTextTrack = this.getTextTrack(currentActive);
+
+      player.trigger('subtitlechange', {
+        index: currentActive,
+        label: currentTextTrack ? currentTextTrack.label : ''
+      });
     };
 
     player.textTracks().on('change', handleSubtitleChangeEvent);
     player.on('dispose', () => {
       player.textTracks().off('change', handleSubtitleChangeEvent);
     });
+  }
+
+  /**
+   * Load subtitles from player options when the player is ready
+   *
+   * @function
+   * @param     {Array} subtitlesOptions
+   *            Subtitles from player options
+   *
+   * @return    {Object}
+   *            Return subtitle manager instance
+   */
+  load(subtitlesOptions = []) {
+    const { player } = this;
+
+    if (subtitlesOptions && subtitlesOptions.length) {
+      this.removeAll();
+
+      let index = -1;
+      const trackEls = [];
+      const subtitles = subtitlesOptions.map((optionItem, optionIndex) => {
+        const subtitle = Object.assign({}, optionItem);
+        const manualCleanup = true;
+
+        // set default to false, otherwise subtitle will reset to the default subtitle
+        // when user switch quality with quality plugin
+        const trackEl = player.addRemoteTextTrack(
+          Object.assign({}, subtitle, { default: false }),
+          manualCleanup
+        );
+
+        trackEl.track.mode = 'hidden';
+
+        trackEls.push(trackEl);
+
+        if (index === -1 && subtitle.default === true) {
+          index = optionIndex;
+        } else {
+          subtitle.default = false;
+        }
+
+        return subtitle;
+      });
+
+      if (index !== -1) {
+        this.flag = subtitles[index].label;
+        this.track = trackEls[index].track;
+        this.track.mode = 'showing';
+      }
+
+      player.trigger('subtitles', subtitles);
+    }
+
+    return this;
+  }
+
+  /**
+   * Remove all subtitle text tracks
+   *
+   * @function
+   * @return    {Object}
+   *            Return subtitle manager instance
+   */
+  removeAll() {
+    this.allTextTracks().forEach(track => {
+      this.player.removeRemoteTextTrack(track);
+    });
+
+    return this;
   }
 
   /**
@@ -54,13 +132,13 @@ class SubtitleManager {
   }
 
   /**
-   * Get all subtitles.
+   * Get all subtitle text tracks.
    *
    * @function
    * @return    {Array}
    *            Return a text track list.
    */
-  currentsTextTrack() {
+  allTextTracks() {
     const textTrackList = [];
     const textTracks = this.player.textTracks();
     let currentTrack;
@@ -82,7 +160,7 @@ class SubtitleManager {
    *            Return default text track index.
    */
   default() {
-    const allTextTrack = this.currentsTextTrack();
+    const allTextTrack = this.allTextTracks();
 
     // Check default in `allTextTrack`.
     const defaultIndex = allTextTrack.findIndex(textTrack => textTrack.default === true);
@@ -126,7 +204,7 @@ class SubtitleManager {
       return;
     }
 
-    const get = this.currentsTextTrack()[index];
+    const get = this.allTextTracks()[index];
 
     if (!get) {
       return;
@@ -144,7 +222,7 @@ class SubtitleManager {
   active() {
     let currentIndex = -1;
 
-    for (const [index, textTrack] of this.currentsTextTrack().entries()) {
+    for (const [index, textTrack] of this.allTextTracks().entries()) {
       if (textTrack.mode === 'showing') {
         currentIndex = index;
         break;
