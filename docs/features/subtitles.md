@@ -21,7 +21,7 @@ window.playerOptions = {
       items: [
         // "AudioTrackButton",
         // "ChaptersButton",
-        // "SubsCapsButton",
+        "SubsCapsButton", // highlight-line
         "PlaybackRateMenuButton",
         "RatesButton",
       ],
