@@ -17,27 +17,27 @@ window.playerOptions = {
     dashHlsBitrateSwitcher: {
       support: "both",
     },
-    settingsMenu: { // highlight-line
-      items: [ // highlight-line
-        "AudioTrackButton", // highlight-line
-        "ChaptersButton", // highlight-line
-        "SubsCapsButton", // highlight-line
-        "PlaybackRateMenuButton", // highlight-line
-        "RatesButton", // highlight-line
-      ], // highlight-line
-      languages: { // highlight-line
-        settings: "Settings", // highlight-line
-        loading: "Loading", // highlight-line
-        back: "Back", // highlight-line
-        captions_off: "Captions Off", // highlight-line
-        default_audio: "Default Audio", // highlight-line
-        audio: "Audio", // highlight-line
-        subtitles: "Subtitles", // highlight-line
-        chapters: "Chapters", // highlight-line
-        speed: "Speed", // highlight-line
-        quality: "Quality", // highlight-line
-      }, // highlight-line
-    }, // highlight-line
+    settingsMenu: {                         // highlight-line
+      items: [                              // highlight-line
+        "AudioTrackButton",                 // highlight-line
+        "ChaptersButton",                   // highlight-line
+        "SubsCapsButton",                   // highlight-line
+        "PlaybackRateMenuButton",           // highlight-line
+        "RatesButton",                      // highlight-line
+      ],                                    // highlight-line
+      languages: {                          // highlight-line
+        settings: "Settings",               // highlight-line
+        loading: "Loading",                 // highlight-line
+        back: "Back",                       // highlight-line
+        captions_off: "Captions Off",       // highlight-line
+        default_audio: "Default Audio",     // highlight-line
+        audio: "Audio",                     // highlight-line
+        subtitles: "Subtitles",             // highlight-line
+        chapters: "Chapters",               // highlight-line
+        speed: "Speed",                     // highlight-line
+        quality: "Quality",                 // highlight-line
+      },                                    // highlight-line
+    },                                      // highlight-line
   },
   liveui: true,
   playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],

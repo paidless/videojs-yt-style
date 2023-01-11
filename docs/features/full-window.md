@@ -24,8 +24,8 @@ window.playerOptions = {
   noUITitleAttributes: true,
   keepTimeTooltipInSeekBar: true,
   persistTextTrackSettings: true,
-  preferFullWindow: true, // highlight-line
-  alwaysEnableFullWindow: true, // highlight-line
+  preferFullWindow: true,           // highlight-line
+  alwaysEnableFullWindow: true,     // highlight-line
 };
 ```
 

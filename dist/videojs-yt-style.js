@@ -1,4 +1,4 @@
-/*! @name videojs-yt-style @version 0.1.8 @license UNLICENSED */
+/*! @name videojs-yt-style @version 0.1.9 @license UNLICENSED */
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('video.js'), require('global/document'), require('global/window')) :
 	typeof define === 'function' && define.amd ? define(['video.js', 'global/document', 'global/window'], factory) :
@@ -51,7 +51,7 @@
 	  module.exports["default"] = module.exports, module.exports.__esModule = true;
 	});
 
-	var version = "0.1.8";
+	var version = "0.1.9";
 
 	var Dom = videojs__default['default'].dom; // https://github.com/Ami-OS/video.js/blob/65750e311661e70f170e3652573caacf6f21fcce/src/js/control-bar/progress-control/time-tooltip.js#L54-L133
 
@@ -395,7 +395,7 @@
 	    var fpsUpdate = function fpsUpdate(details) {
 	      player.fps(details.fps);
 	      player.fps_.certainty = details.certainty;
-	      player.trigger('fpsupdate');
+	      player.trigger('fpsupdate', details);
 	    };
 
 	    var fpsUpdateHandle = throttle(fpsUpdate, UPDATE_REFRESH_INTERVAL);
@@ -406,6 +406,30 @@
 	    });
 	  });
 	};
+
+	var _extends_1 = createCommonjsModule(function (module) {
+	  function _extends() {
+	    module.exports = _extends = Object.assign || function (target) {
+	      for (var i = 1; i < arguments.length; i++) {
+	        var source = arguments[i];
+
+	        for (var key in source) {
+	          if (Object.prototype.hasOwnProperty.call(source, key)) {
+	            target[key] = source[key];
+	          }
+	        }
+	      }
+
+	      return target;
+	    };
+
+	    module.exports["default"] = module.exports, module.exports.__esModule = true;
+	    return _extends.apply(this, arguments);
+	  }
+
+	  module.exports = _extends;
+	  module.exports["default"] = module.exports, module.exports.__esModule = true;
+	});
 
 	/**
 	 * Check two language is not same.
@@ -464,13 +488,96 @@
 	    this.lastShowing_ = null;
 
 	    var handleSubtitleChangeEvent = function handleSubtitleChangeEvent() {
-	      _this.lastShowing(_this.active());
+	      var currentActive = _this.active();
+
+	      _this.lastShowing(currentActive);
+
+	      var currentTextTrack = _this.getTextTrack(currentActive);
+
+	      player.trigger('subtitlechange', {
+	        index: currentActive,
+	        label: currentTextTrack ? currentTextTrack.label : ''
+	      });
 	    };
 
 	    player.textTracks().on('change', handleSubtitleChangeEvent);
 	    player.on('dispose', function () {
 	      player.textTracks().off('change', handleSubtitleChangeEvent);
 	    });
+	  }
+	  /**
+	   * Load subtitles from player options when the player is ready
+	   *
+	   * @function
+	   * @param     {Array} subtitlesOptions
+	   *            Subtitles from player options
+	   *
+	   * @return    {Object}
+	   *            Return subtitle manager instance
+	   */
+
+
+	  var _proto = SubtitleManager.prototype;
+
+	  _proto.load = function load(subtitlesOptions) {
+	    if (subtitlesOptions === void 0) {
+	      subtitlesOptions = [];
+	    }
+
+	    var player = this.player;
+
+	    if (subtitlesOptions && subtitlesOptions.length) {
+	      this.removeAll();
+	      var index = -1;
+	      var trackEls = [];
+	      var subtitles = subtitlesOptions.map(function (optionItem, optionIndex) {
+	        var subtitle = _extends_1({}, optionItem);
+
+	        var manualCleanup = true; // set default to false, otherwise subtitle will reset to the default subtitle
+	        // when user switch quality with quality plugin
+
+	        var trackEl = player.addRemoteTextTrack(_extends_1({}, subtitle, {
+	          default: false
+	        }), manualCleanup);
+	        trackEl.track.mode = 'hidden';
+	        trackEls.push(trackEl);
+
+	        if (index === -1 && subtitle.default === true) {
+	          index = optionIndex;
+	        } else {
+	          subtitle.default = false;
+	        }
+
+	        return subtitle;
+	      });
+
+	      if (index !== -1) {
+	        this.flag = subtitles[index].label;
+	        this.track = trackEls[index].track;
+	        this.track.mode = 'showing';
+	      }
+
+	      player.trigger('subtitles', subtitles);
+	    }
+
+	    return this;
+	  }
+	  /**
+	   * Remove all subtitle text tracks
+	   *
+	   * @function
+	   * @return    {Object}
+	   *            Return subtitle manager instance
+	   */
+	  ;
+
+	  _proto.removeAll = function removeAll() {
+	    var _this2 = this;
+
+	    this.allTextTracks().forEach(function (track) {
+	      _this2.player.removeRemoteTextTrack(track);
+	    });
+	    return this;
 	  }
 	  /**
 	   * Get last showing or set last showing.
@@ -482,9 +589,7 @@
 	   * @return    {number}
 	   *            Return a index of last showing text track.
 	   */
-
-
-	  var _proto = SubtitleManager.prototype;
+	  ;
 
 	  _proto.lastShowing = function lastShowing(index) {
 	    if (index === void 0) {
@@ -499,7 +604,7 @@
 	    return index;
 	  }
 	  /**
-	   * Get all subtitles.
+	   * Get all subtitle text tracks.
 	   *
 	   * @function
 	   * @return    {Array}
@@ -507,7 +612,7 @@
 	   */
 	  ;
 
-	  _proto.currentsTextTrack = function currentsTextTrack() {
+	  _proto.allTextTracks = function allTextTracks() {
 	    var textTrackList = [];
 	    var textTracks = this.player.textTracks();
 	    var currentTrack;
@@ -532,7 +637,7 @@
 	  ;
 
 	  _proto.default = function _default() {
-	    var allTextTrack = this.currentsTextTrack(); // Check default in `allTextTrack`.
+	    var allTextTrack = this.allTextTracks(); // Check default in `allTextTrack`.
 
 	    var defaultIndex = allTextTrack.findIndex(function (textTrack) {
 	      return textTrack.default === true;
@@ -584,7 +689,7 @@
 	      return;
 	    }
 
-	    var get = this.currentsTextTrack()[index];
+	    var get = this.allTextTracks()[index];
 
 	    if (!get) {
 	      return;
@@ -604,7 +709,7 @@
 	  _proto.active = function active() {
 	    var currentIndex = -1;
 
-	    for (var _iterator3 = _createForOfIteratorHelperLoose(this.currentsTextTrack().entries()), _step3; !(_step3 = _iterator3()).done;) {
+	    for (var _iterator3 = _createForOfIteratorHelperLoose(this.allTextTracks().entries()), _step3; !(_step3 = _iterator3()).done;) {
 	      var _step3$value = _step3.value,
 	          index = _step3$value[0],
 	          textTrack = _step3$value[1];
@@ -709,6 +814,13 @@
 
 	var subtitles = function subtitles(player) {
 	  player.subtitles = new SubtitleManager(player);
+	  player.ready(function () {
+	    var subtitlesOptions = player.options_.subtitles;
+
+	    if (subtitlesOptions && subtitlesOptions.length) {
+	      player.subtitles.load(subtitlesOptions);
+	    }
+	  });
 	};
 
 	/**

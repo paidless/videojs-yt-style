@@ -53,12 +53,12 @@ window.playerOptions = {
       },
     },
   },
-  liveui: true, // highlight-line
-  playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2], // highlight-line
-  nativeControlsForTouch: false, // highlight-line
-  noUITitleAttributes: true, // highlight-line
-  keepTimeTooltipInSeekBar: true, // highlight-line
-  persistTextTrackSettings: true, // highlight-line
+  liveui: true,                                               // highlight-line
+  playbackRates: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],    // highlight-line
+  nativeControlsForTouch: false,                              // highlight-line
+  noUITitleAttributes: true,                                  // highlight-line
+  keepTimeTooltipInSeekBar: true,                             // highlight-line
+  persistTextTrackSettings: true,                             // highlight-line
   preferFullWindow: true,
   alwaysEnableFullWindow: true,
   // techOrder: ["html5"],

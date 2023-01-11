@@ -1,9 +1,10 @@
-/*! @name videojs-yt-style @version 0.1.8 @license UNLICENSED */
+/*! @name videojs-yt-style @version 0.1.9 @license UNLICENSED */
 'use strict';
 
 var _inheritsLoose = require('@babel/runtime/helpers/inheritsLoose');
 var videojs = require('video.js');
 var document = require('global/document');
+var _extends = require('@babel/runtime/helpers/extends');
 var window = require('global/window');
 var _assertThisInitialized = require('@babel/runtime/helpers/assertThisInitialized');
 
@@ -12,10 +13,11 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 var _inheritsLoose__default = /*#__PURE__*/_interopDefaultLegacy(_inheritsLoose);
 var videojs__default = /*#__PURE__*/_interopDefaultLegacy(videojs);
 var document__default = /*#__PURE__*/_interopDefaultLegacy(document);
+var _extends__default = /*#__PURE__*/_interopDefaultLegacy(_extends);
 var window__default = /*#__PURE__*/_interopDefaultLegacy(window);
 var _assertThisInitialized__default = /*#__PURE__*/_interopDefaultLegacy(_assertThisInitialized);
 
-var version = "0.1.8";
+var version = "0.1.9";
 
 var Dom = videojs__default['default'].dom; // https://github.com/Ami-OS/video.js/blob/65750e311661e70f170e3652573caacf6f21fcce/src/js/control-bar/progress-control/time-tooltip.js#L54-L133
 
@@ -359,7 +361,7 @@ var fps = function fps(player) {
     var fpsUpdate = function fpsUpdate(details) {
       player.fps(details.fps);
       player.fps_.certainty = details.certainty;
-      player.trigger('fpsupdate');
+      player.trigger('fpsupdate', details);
     };
 
     var fpsUpdateHandle = throttle(fpsUpdate, UPDATE_REFRESH_INTERVAL);
@@ -428,13 +430,96 @@ var SubtitleManager = /*#__PURE__*/function () {
     this.lastShowing_ = null;
 
     var handleSubtitleChangeEvent = function handleSubtitleChangeEvent() {
-      _this.lastShowing(_this.active());
+      var currentActive = _this.active();
+
+      _this.lastShowing(currentActive);
+
+      var currentTextTrack = _this.getTextTrack(currentActive);
+
+      player.trigger('subtitlechange', {
+        index: currentActive,
+        label: currentTextTrack ? currentTextTrack.label : ''
+      });
     };
 
     player.textTracks().on('change', handleSubtitleChangeEvent);
     player.on('dispose', function () {
       player.textTracks().off('change', handleSubtitleChangeEvent);
     });
+  }
+  /**
+   * Load subtitles from player options when the player is ready
+   *
+   * @function
+   * @param     {Array} subtitlesOptions
+   *            Subtitles from player options
+   *
+   * @return    {Object}
+   *            Return subtitle manager instance
+   */
+
+
+  var _proto = SubtitleManager.prototype;
+
+  _proto.load = function load(subtitlesOptions) {
+    if (subtitlesOptions === void 0) {
+      subtitlesOptions = [];
+    }
+
+    var player = this.player;
+
+    if (subtitlesOptions && subtitlesOptions.length) {
+      this.removeAll();
+      var index = -1;
+      var trackEls = [];
+      var subtitles = subtitlesOptions.map(function (optionItem, optionIndex) {
+        var subtitle = _extends__default['default']({}, optionItem);
+
+        var manualCleanup = true; // set default to false, otherwise subtitle will reset to the default subtitle
+        // when user switch quality with quality plugin
+
+        var trackEl = player.addRemoteTextTrack(_extends__default['default']({}, subtitle, {
+          default: false
+        }), manualCleanup);
+        trackEl.track.mode = 'hidden';
+        trackEls.push(trackEl);
+
+        if (index === -1 && subtitle.default === true) {
+          index = optionIndex;
+        } else {
+          subtitle.default = false;
+        }
+
+        return subtitle;
+      });
+
+      if (index !== -1) {
+        this.flag = subtitles[index].label;
+        this.track = trackEls[index].track;
+        this.track.mode = 'showing';
+      }
+
+      player.trigger('subtitles', subtitles);
+    }
+
+    return this;
+  }
+  /**
+   * Remove all subtitle text tracks
+   *
+   * @function
+   * @return    {Object}
+   *            Return subtitle manager instance
+   */
+  ;
+
+  _proto.removeAll = function removeAll() {
+    var _this2 = this;
+
+    this.allTextTracks().forEach(function (track) {
+      _this2.player.removeRemoteTextTrack(track);
+    });
+    return this;
   }
   /**
    * Get last showing or set last showing.
@@ -446,9 +531,7 @@ var SubtitleManager = /*#__PURE__*/function () {
    * @return    {number}
    *            Return a index of last showing text track.
    */
-
-
-  var _proto = SubtitleManager.prototype;
+  ;
 
   _proto.lastShowing = function lastShowing(index) {
     if (index === void 0) {
@@ -463,7 +546,7 @@ var SubtitleManager = /*#__PURE__*/function () {
     return index;
   }
   /**
-   * Get all subtitles.
+   * Get all subtitle text tracks.
    *
    * @function
    * @return    {Array}
@@ -471,7 +554,7 @@ var SubtitleManager = /*#__PURE__*/function () {
    */
   ;
 
-  _proto.currentsTextTrack = function currentsTextTrack() {
+  _proto.allTextTracks = function allTextTracks() {
     var textTrackList = [];
     var textTracks = this.player.textTracks();
     var currentTrack;
@@ -496,7 +579,7 @@ var SubtitleManager = /*#__PURE__*/function () {
   ;
 
   _proto.default = function _default() {
-    var allTextTrack = this.currentsTextTrack(); // Check default in `allTextTrack`.
+    var allTextTrack = this.allTextTracks(); // Check default in `allTextTrack`.
 
     var defaultIndex = allTextTrack.findIndex(function (textTrack) {
       return textTrack.default === true;
@@ -548,7 +631,7 @@ var SubtitleManager = /*#__PURE__*/function () {
       return;
     }
 
-    var get = this.currentsTextTrack()[index];
+    var get = this.allTextTracks()[index];
 
     if (!get) {
       return;
@@ -568,7 +651,7 @@ var SubtitleManager = /*#__PURE__*/function () {
   _proto.active = function active() {
     var currentIndex = -1;
 
-    for (var _iterator3 = _createForOfIteratorHelperLoose(this.currentsTextTrack().entries()), _step3; !(_step3 = _iterator3()).done;) {
+    for (var _iterator3 = _createForOfIteratorHelperLoose(this.allTextTracks().entries()), _step3; !(_step3 = _iterator3()).done;) {
       var _step3$value = _step3.value,
           index = _step3$value[0],
           textTrack = _step3$value[1];
@@ -673,6 +756,13 @@ var SubtitleManager = /*#__PURE__*/function () {
 
 var subtitles = function subtitles(player) {
   player.subtitles = new SubtitleManager(player);
+  player.ready(function () {
+    var subtitlesOptions = player.options_.subtitles;
+
+    if (subtitlesOptions && subtitlesOptions.length) {
+      player.subtitles.load(subtitlesOptions);
+    }
+  });
 };
 
 /**
