@@ -44,7 +44,7 @@ window.playerOptions = {
   nativeControlsForTouch: false,
   noUITitleAttributes: true,
   keepTimeTooltipInSeekBar: true,
-  persistTextTrackSettings: true,
+  persistTextTrackSettings: true,         // highlight-line
   subtitles: [                            // highlight-line
     {                                     // highlight-line
       kind: 'subtitles',                  // highlight-line
