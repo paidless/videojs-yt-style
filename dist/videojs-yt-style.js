@@ -1,4 +1,4 @@
-/*! @name videojs-yt-style @version 0.1.9 @license UNLICENSED */
+/*! @name videojs-yt-style @version 0.1.10 @license UNLICENSED */
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('video.js'), require('global/document'), require('global/window')) :
 	typeof define === 'function' && define.amd ? define(['video.js', 'global/document', 'global/window'], factory) :
@@ -51,7 +51,7 @@
 	  module.exports["default"] = module.exports, module.exports.__esModule = true;
 	});
 
-	var version = "0.1.9";
+	var version = "0.1.10";
 
 	var Dom = videojs__default['default'].dom; // https://github.com/Ami-OS/video.js/blob/65750e311661e70f170e3652573caacf6f21fcce/src/js/control-bar/progress-control/time-tooltip.js#L54-L133
 
@@ -490,9 +490,9 @@
 	    var handleSubtitleChangeEvent = function handleSubtitleChangeEvent() {
 	      var currentActive = _this.active();
 
-	      _this.lastShowing(currentActive);
+	      var currentTextTrack = _this.activeTextTrack();
 
-	      var currentTextTrack = _this.getTextTrack(currentActive);
+	      _this.lastShowing(currentActive);
 
 	      player.trigger('subtitlechange', {
 	        index: currentActive,
@@ -774,7 +774,7 @@
 	  ;
 
 	  _proto.close = function close() {
-	    var active = this.getTextTrack(this.active());
+	    var active = this.activeTextTrack();
 
 	    if (!active) {
 	      return;
@@ -1573,7 +1573,7 @@
 	      return e.key === 'c';
 	    },
 	    handler: function handler(player, options, e) {
-	      if (player.subtitles.currentsTextTrack().length === 0) {
+	      if (player.subtitles.allTextTracks().length === 0) {
 	        return;
 	      }
 

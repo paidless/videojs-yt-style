@@ -1,4 +1,4 @@
-/*! @name videojs-yt-style @version 0.1.9 @license UNLICENSED */
+/*! @name videojs-yt-style @version 0.1.10 @license UNLICENSED */
 'use strict';
 
 var _inheritsLoose = require('@babel/runtime/helpers/inheritsLoose');
@@ -17,7 +17,7 @@ var _extends__default = /*#__PURE__*/_interopDefaultLegacy(_extends);
 var window__default = /*#__PURE__*/_interopDefaultLegacy(window);
 var _assertThisInitialized__default = /*#__PURE__*/_interopDefaultLegacy(_assertThisInitialized);
 
-var version = "0.1.9";
+var version = "0.1.10";
 
 var Dom = videojs__default['default'].dom; // https://github.com/Ami-OS/video.js/blob/65750e311661e70f170e3652573caacf6f21fcce/src/js/control-bar/progress-control/time-tooltip.js#L54-L133
 
@@ -432,9 +432,9 @@ var SubtitleManager = /*#__PURE__*/function () {
     var handleSubtitleChangeEvent = function handleSubtitleChangeEvent() {
       var currentActive = _this.active();
 
-      _this.lastShowing(currentActive);
+      var currentTextTrack = _this.activeTextTrack();
 
-      var currentTextTrack = _this.getTextTrack(currentActive);
+      _this.lastShowing(currentActive);
 
       player.trigger('subtitlechange', {
         index: currentActive,
@@ -716,7 +716,7 @@ var SubtitleManager = /*#__PURE__*/function () {
   ;
 
   _proto.close = function close() {
-    var active = this.getTextTrack(this.active());
+    var active = this.activeTextTrack();
 
     if (!active) {
       return;
@@ -1502,7 +1502,7 @@ var defaultCustomKeys = {
       return e.key === 'c';
     },
     handler: function handler(player, options, e) {
-      if (player.subtitles.currentsTextTrack().length === 0) {
+      if (player.subtitles.allTextTracks().length === 0) {
         return;
       }
 
