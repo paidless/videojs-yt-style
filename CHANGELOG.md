@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Load subtitle from player options
+- Added fps data for event 'fpsupdate'
 
 ## [0.1.8] - 2022-12-18
 

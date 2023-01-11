@@ -101,7 +101,7 @@ const fps = (player) => {
       player.fps(details.fps);
       player.fps_.certainty = details.certainty;
 
-      player.trigger('fpsupdate');
+      player.trigger('fpsupdate', details);
     };
     const fpsUpdateHandle = throttle(fpsUpdate, UPDATE_REFRESH_INTERVAL);
 
