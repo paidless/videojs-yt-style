@@ -89,6 +89,7 @@
      */
     function (hook, vm) {
       hook.doneEach(function () {
+        console.log('hook.doneEach', hook, vm);
         handleExternalScript();
       });
     }

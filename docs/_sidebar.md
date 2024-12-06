@@ -6,3 +6,4 @@
   - [Live DVR](./features/live-dvr.md)
   - [Settings Menu](./features/settings-menu.md)
   - [Subtitle](./features/subtitles.md)
+  - [Theme Color](./features/theme-color.md)
